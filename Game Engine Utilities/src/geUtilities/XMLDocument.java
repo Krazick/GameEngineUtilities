@@ -207,6 +207,10 @@ public class XMLDocument {
 
 		return tXMLNode;
 	}
+	
+	public XMLNode getDocumentNodeFromElement () {
+		return new XMLNode (document.getDocumentElement ());
+	}
 
 	public XMLElement getDocumentElement () {
 		XMLElement tXMLElement;

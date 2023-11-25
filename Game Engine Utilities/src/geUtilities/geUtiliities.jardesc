@@ -14,7 +14,6 @@
         <file path="/Game Engine Utilities/.gitignore"/>
         <file path="/Game Engine Utilities/.project"/>
         <file path="/Game Engine Utilities/.classpath"/>
-        <folder path="/Game Engine Utilities/JUnitSource"/>
         <file path="/Game Engine Utilities/.DS_Store"/>
         <javaElement handleIdentifier="=Game Engine Utilities/src"/>
     </selectedElements>
