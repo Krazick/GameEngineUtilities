@@ -67,9 +67,9 @@ public class KButton extends JButton implements ActionListener {
 			tTime = System.currentTimeMillis ();
 			fullCount++;
 			if ((tTime - previousTime) > eventDelay) {
+				eventCount++;
 				userActionListener.actionPerformed (aActionEvent);
 				setPreviousTime (tTime);
-				eventCount++;
 			}
 		}
 		
