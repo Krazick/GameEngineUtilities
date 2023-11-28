@@ -271,7 +271,7 @@ public class OverlapLayout implements LayoutManager2, java.io.Serializable
 	/**
 	 * Removes the specified component from the layout.
 	 *
-	 * @param comp the component to be removed
+	 * @param component the component to be removed
 	 */
 	@Override
 	public void removeLayoutComponent(Component component)
