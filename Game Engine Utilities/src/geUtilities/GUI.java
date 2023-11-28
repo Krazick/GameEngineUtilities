@@ -17,23 +17,62 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface GUI.
+ */
 public interface GUI {
+	
+	/** The Constant NO_TOOL_TIP. */
 	public static final String NO_TOOL_TIP = "";
+	
+	/** The Constant NULL_STRING. */
 	public static final String NULL_STRING = null;
+	
+	/** The Constant EMPTY_STRING. */
 	public static final String EMPTY_STRING = "";
+	
+	/** The Constant NO_PANEL. */
 	public static final JPanel NO_PANEL = null;
+	
+	/** The Constant NO_LABEL. */
 	public static final JLabel NO_LABEL = null;
+	
+	/** The Constant NO_BUTTON. */
 	public static final JButton NO_BUTTON = null;
+	
+	/** The Constant NO_CHECK_BOX. */
 	public static final JCheckBox NO_CHECK_BOX = null;
+	
+	/** The Constant NO_COMBO_BOX. */
 	public static final JComboBox<String> NO_COMBO_BOX = null;
+	
+	/** The Constant NO_JCOMPONENT. */
 	public static final JComponent NO_JCOMPONENT = null;
+	
+	/** The Constant NO_BUTTON_GROUP. */
 	public static final ButtonGroup NO_BUTTON_GROUP = null;
+	
+	/** The Constant NO_SCROLL_PANE. */
 	public static final JScrollPane NO_SCROLL_PANE = null;
+	
+	/** The Constant NO_COLOR. */
 	public static final Color NO_COLOR = null;
+	
+	/** The Constant SPLIT. */
 	public static final String SPLIT = ";";
+	
+	/** The Constant NEWLINE. */
 	public static final String NEWLINE = "\n";
+	
+	/** The Constant defaultColor. */
 	public static final Color defaultColor = UIManager.getColor ("Panel.background");
 	
+	/**
+	 * Gets the number of displays.
+	 *
+	 * @return the number of displays
+	 */
 	public static int getNumberOfDisplays () {
 		int tNumberOfDisplays;
 		GraphicsEnvironment tLocalGraphicsEnvironment;
@@ -44,6 +83,11 @@ public interface GUI {
 		return tNumberOfDisplays;
 	}
 	
+	/**
+	 * Gets the default screen size.
+	 *
+	 * @return the default screen size
+	 */
 	public static Dimension getDefaultScreenSize () {
 		GraphicsDevice tGraphicsDevice;
 		Dimension tDimension;
@@ -54,6 +98,12 @@ public interface GUI {
 		return tDimension;
 	}
 	
+	/**
+	 * Gets the screen size.
+	 *
+	 * @param aDeviceIndex the a device index
+	 * @return the screen size
+	 */
 	public static Dimension getScreenSize (int aDeviceIndex) {
 		GraphicsDevice tGraphicsDevice;
 		GraphicsDevice [] tGraphicsDevices;
@@ -70,6 +120,12 @@ public interface GUI {
 		return tDimension;
 	}
 
+	/**
+	 * Gets the size of device.
+	 *
+	 * @param tGraphicsDevice the t graphics device
+	 * @return the size of device
+	 */
 	public static Dimension getSizeOfDevice (GraphicsDevice tGraphicsDevice) {
 		Dimension tDimension;
 		int tWidth;
@@ -82,6 +138,13 @@ public interface GUI {
 		return tDimension;
 	}
 	
+	/**
+	 * Make transparent.
+	 *
+	 * @param aSource the a source
+	 * @param aAlpha the a alpha
+	 * @return the color
+	 */
 	public static Color makeTransparent(Color aSource, int aAlpha) {
 		Color tTransparent;
 		
@@ -90,6 +153,9 @@ public interface GUI {
 		return tTransparent;
 	}
 	
+	/**
+	 * Go boom.
+	 */
 	// Use as a Utility Function to Throw an Exception and Print a Stack Trace
 	public default void goBoom () {
 		int boomVariable;
@@ -104,6 +170,13 @@ public interface GUI {
 		}
 	}
 
+	/**
+	 * Format date time.
+	 *
+	 * @param aLabel the a label
+	 * @param aDateTime the a date time
+	 * @return the string
+	 */
 	public static String formatDateTime (String aLabel, long aDateTime) {
 		Date tDateTime;
 		String tFormatDateTime;
@@ -114,6 +187,13 @@ public interface GUI {
 		return tFormatDateTime;
 	}
 	
+	/**
+	 * Format date time.
+	 *
+	 * @param aLabel the a label
+	 * @param aDateTime the a date time
+	 * @return the string
+	 */
 	public static String formatDateTime (String aLabel, Date aDateTime) {
 		String tFormatDateTime;
 		SimpleDateFormat tSimpleFormat;
