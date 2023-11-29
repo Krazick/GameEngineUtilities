@@ -1,4 +1,4 @@
-package geUtilities;
+package geUtilities.utilites;
 
 import org.junit.platform.suite.api.SelectPackages;
 import org.junit.platform.suite.api.Suite;

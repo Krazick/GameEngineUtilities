@@ -1,4 +1,4 @@
-package ge18xx.utilities;
+package geUtilities.utilites;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

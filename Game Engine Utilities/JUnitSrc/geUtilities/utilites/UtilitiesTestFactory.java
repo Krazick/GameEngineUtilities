@@ -1,6 +1,10 @@
-package ge18xx.utilities;
+package geUtilities.utilites;
 
 import org.mockito.Mockito;
+
+import geUtilities.XMLDocument;
+import geUtilities.XMLElement;
+import geUtilities.XMLNode;
 
 public class UtilitiesTestFactory {
 	XMLDocument theXMLDocument;
@@ -12,7 +16,7 @@ public class UtilitiesTestFactory {
 	public XMLDocument buildXMLDocument (String aXMLText) {
 		XMLDocument tXMLDocument;
 
-		tXMLDocument = theXMLDocument.ParseXMLString (aXMLText);
+		tXMLDocument = theXMLDocument.parseXMLString (aXMLText);
 
 		return tXMLDocument;
 	}

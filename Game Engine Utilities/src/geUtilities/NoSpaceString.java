@@ -18,7 +18,7 @@ public class NoSpaceString {
 	/**
 	 * Instantiates a new no space string.
 	 */
-	NoSpaceString () {
+	public NoSpaceString () {
 		setString (NULL_STRING);
 	}
 
@@ -28,7 +28,7 @@ public class NoSpaceString {
 	 *
 	 * @param aString the a string
 	 */
-	NoSpaceString (String aString) {
+	public NoSpaceString (String aString) {
 		if (aString == NULL_STRING) {
 			setString (aString);
 		} else {
