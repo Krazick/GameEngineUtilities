@@ -16,6 +16,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
 
 public class XMLDocument {
@@ -196,11 +197,35 @@ public class XMLDocument {
 		return document;
 	}
 
+	public Element getDocumentElement (Document aDocument) {
+		Element tElement;
+		
+		tElement = aDocument.getDocumentElement ();
+		
+		return tElement;
+	}
+	
 	public XMLNode getDocumentNode () {
 		XMLNode tXMLNode;
+		Element tElement;
 
 		if (validDocument ()) {
-			tXMLNode = new XMLNode (document.getDocumentElement ());
+			tElement = getDocumentElement (document);
+			tXMLNode = new XMLNode (tElement);
+		} else {
+			tXMLNode = XMLNode.NO_NODE;
+		}
+
+		return tXMLNode;
+	}
+	
+	public XMLNode getDocumentNode (Document aDocument) {
+		XMLNode tXMLNode;
+		Element tElement;
+
+		if (validDocument ()) {
+			tElement = getDocumentElement (aDocument);
+			tXMLNode = new XMLNode (tElement);
 		} else {
 			tXMLNode = XMLNode.NO_NODE;
 		}
