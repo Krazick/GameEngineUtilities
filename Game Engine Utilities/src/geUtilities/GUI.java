@@ -8,7 +8,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -16,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
+
+import swingDelays.KButton;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -39,7 +40,7 @@ public interface GUI {
 	public static final JLabel NO_LABEL = null;
 	
 	/** The Constant NO_BUTTON. */
-	public static final JButton NO_BUTTON = null;
+	public static final KButton NO_BUTTON = null;
 	
 	/** The Constant NO_CHECK_BOX. */
 	public static final JCheckBox NO_CHECK_BOX = null;

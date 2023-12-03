@@ -15,6 +15,6 @@
         <file path="/Game Engine Utilities/.project"/>
         <file path="/Game Engine Utilities/.classpath"/>
         <file path="/Game Engine Utilities/.DS_Store"/>
-        <javaElement handleIdentifier="=Game Engine Utilities/src"/>
+        <javaElement handleIdentifier="=Game Engine Utilities/src=/optional=/true=/=/maven.pomderived=/true=/"/>
     </selectedElements>
 </jardesc>

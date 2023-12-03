@@ -7,11 +7,16 @@ import javax.swing.JButton;
 
 public class KButton extends JButton implements ActionListener {
 	private static final long serialVersionUID = 1L;
+	static long eventDelay;
+
 	ActionListener userActionListener;
 	long previousTime;
-	long eventDelay;
 	int eventCount;
 	int fullCount;
+	
+	public KButton (String aText) {
+		super (aText);
+	}
 	
 	@Override
 	public void addActionListener (ActionListener aActionListener) {
