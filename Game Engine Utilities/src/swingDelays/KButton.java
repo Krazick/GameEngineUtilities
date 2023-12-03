@@ -14,6 +14,10 @@ public class KButton extends JButton implements ActionListener {
 	int eventCount;
 	int fullCount;
 	
+	public KButton () {
+		super ();
+	}
+	
 	public KButton (String aText) {
 		super (aText);
 	}
