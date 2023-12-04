@@ -67,18 +67,19 @@ public class FileUtils {
 	}
 	
 	public static void createDirectory (String aDirectoryName) {
-	    File tDirectory = new File (aDirectoryName);
+	    File tDirectory;
 	    
+	    tDirectory = new File (aDirectoryName);
 	    if (! tDirectory.exists ()){
-	    	tDirectory.mkdir ();
+	    		tDirectory.mkdir ();
 	    }
 	}
 	
 	public boolean setupFileWriter () {
-		boolean tGoodFileWriter = false;
+		boolean tGoodFileWriter;
 		
 		fileWriter = NO_FILE_WRITER;
-		
+		tGoodFileWriter = false;
 		if (file != NO_FILE) {
 			try {
 				fileWriter = new FileWriter (file, false); // Overwrite the file if it exists
@@ -92,8 +93,9 @@ public class FileUtils {
 	}
 	
 	public boolean fileIsSetup () {
-		boolean tFileIsSetup = false;
+		boolean tFileIsSetup;
 		
+		tFileIsSetup = false;
 		if (file != NO_FILE) {
 			tFileIsSetup = true;
 		}
@@ -102,8 +104,9 @@ public class FileUtils {
 	}
 	
 	public boolean fileWriterIsSetup () {
-		boolean tFileWriterIsSetup = false;
+		boolean tFileWriterIsSetup;
 		
+		tFileWriterIsSetup = false;
 		if (fileWriter != NO_FILE_WRITER) {
 			tFileWriterIsSetup = true;
 		}
@@ -138,8 +141,9 @@ public class FileUtils {
 	}
 	
 	public XMLDocument loadXMLFile (File aSaveGame) {
-		XMLDocument tXMLDocument = XMLDocument.NO_XML_DOCUMENT;
+		XMLDocument tXMLDocument;
 		
+		tXMLDocument = XMLDocument.NO_XML_DOCUMENT;
 		if (aSaveGame != NO_FILE) {
 			try {
 				tXMLDocument = new XMLDocument (aSaveGame);
