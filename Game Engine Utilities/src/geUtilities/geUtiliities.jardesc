@@ -11,10 +11,15 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
-        <file path="/Game Engine Utilities/.gitignore"/>
-        <file path="/Game Engine Utilities/.project"/>
-        <file path="/Game Engine Utilities/.classpath"/>
+        <javaElement handleIdentifier="=Game Engine Utilities/JUnitSrc"/>
+        <file path="/Game Engine Utilities/pom.xml"/>
         <file path="/Game Engine Utilities/.DS_Store"/>
         <javaElement handleIdentifier="=Game Engine Utilities/src=/optional=/true=/=/maven.pomderived=/true=/"/>
+        <folder path="/Game Engine Utilities/target"/>
+        <folder path="/Game Engine Utilities/bin"/>
+        <file path="/Game Engine Utilities/.gitignore"/>
+        <file path="/Game Engine Utilities/.project"/>
+        <folder path="/Game Engine Utilities/doc"/>
+        <file path="/Game Engine Utilities/.classpath"/>
     </selectedElements>
 </jardesc>

@@ -34,7 +34,7 @@ public class XMLFrame extends JFrame {
 	}
 
 	private static final long serialVersionUID = 1L;
-	public GameEngineManager gameManager;
+	public GameEngineManager gameEngineManager;
 	boolean defaultVisible;
 	int defaultWidth;
 	int defaultHeight;
@@ -56,27 +56,31 @@ public class XMLFrame extends JFrame {
 	
 	public void setGameManager (String aFrameName, GameEngineManager aGameManager) {
 		setGameManager (aGameManager);
-		if (gameManager == GameManagerI.NO_GAME_MANAGER) {
+		if (gameEngineManager == GameManagerI.NO_GAME_MANAGER) {
 			gameName = GameManagerI.NO_GAME_NAME;
 		} else {
-			gameName = gameManager.getActiveGameName ();
+			gameName = gameEngineManager.getActiveGameName ();
 		}
 		setTitle (aFrameName);
 	}
 	
 	public void setGameManager (GameEngineManager aGameManager) {
-		gameManager = aGameManager;
+		gameEngineManager = aGameManager;
 	}
 	
 	public void setGameManager (NetworkGameSupport aGameManager) {
-		gameManager = (GameEngineManager) aGameManager;
+		gameEngineManager = (GameEngineManager) aGameManager;
+	}
+	
+	public GameEngineManager getGameManager () {
+		return gameEngineManager;
 	}
 	
 	protected void updateFrameTitle (String aBaseTitle) {
 		String tFrameTitle;
 
-		if (gameManager != GameManagerI.NO_GAME_MANAGER) {
-			tFrameTitle = gameManager.createFrameTitle (aBaseTitle);
+		if (gameEngineManager != GameManagerI.NO_GAME_MANAGER) {
+			tFrameTitle = gameEngineManager.createFrameTitle (aBaseTitle);
 			setTitle (tFrameTitle);
 		}
 	}
