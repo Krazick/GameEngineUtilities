@@ -66,6 +66,14 @@ public class FileUtils {
 		}
 	}
 	
+	public File createFile (String aPath) {
+		File tFile;
+		
+		tFile = new File (aPath);
+		
+		return tFile;
+	}
+	
 	public static void createDirectory (String aDirectoryName) {
 	    File tDirectory;
 	    
@@ -74,7 +82,20 @@ public class FileUtils {
 	    		tDirectory.mkdir ();
 	    }
 	}
-	
+
+	public void outputToFile (String aReport, File aFile) {
+		setFile (aFile);
+		try {			
+			if (setupFileWriter ()) {
+				fileWriter.write (aReport);
+			}
+			closeFile ();
+		} catch (Exception tException) {
+			System.err.println (tException);
+			tException.printStackTrace ();
+		}
+	}
+
 	public boolean setupFileWriter () {
 		boolean tGoodFileWriter;
 		
