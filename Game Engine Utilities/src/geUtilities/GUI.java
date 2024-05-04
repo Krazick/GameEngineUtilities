@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.event.ItemListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -47,6 +48,9 @@ public interface GUI {
 	
 	/** The Constant NO_COMBO_BOX. */
 	public static final JComboBox<String> NO_COMBO_BOX = null;
+	
+	/** The Constant NO_ITEM_LISTENER. */
+	public static final ItemListener NO_ITEM_LISTENER = null;
 	
 	/** The Constant NO_JCOMPONENT. */
 	public static final JComponent NO_JCOMPONENT = null;
