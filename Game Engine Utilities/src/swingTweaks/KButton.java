@@ -1,4 +1,4 @@
-package swingDelays;
+package swingTweaks;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

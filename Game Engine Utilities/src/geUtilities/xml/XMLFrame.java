@@ -22,9 +22,9 @@ import javax.swing.JScrollPane;
 import geUtilities.XMLDocument;
 import geUtilities.XMLElement;
 import geUtilities.XMLNode;
+import swingTweaks.KButton;
 import geUtilities.FrameInfo;
 import geUtilities.GameFrameConfig;
-import swingDelays.KButton;
 
 public class XMLFrame extends JFrame {
 	public static final XMLFrame NO_XML_FRAME = null;

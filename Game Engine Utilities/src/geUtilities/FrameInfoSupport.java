@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 import geUtilities.xml.GameEngineManager;
 import geUtilities.xml.XMLFrame;
-import swingDelays.KButton;
+import swingTweaks.KButton;
 
 public class FrameInfoSupport implements ActionListener {
 	ArrayList<XMLFrame> configFrames;
