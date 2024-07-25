@@ -67,6 +67,9 @@ public interface GUI {
 	/** The Constant SPLIT. */
 	public static final String SPLIT = ";";
 	
+	/** The Constant COMMA -- divider. */
+	public static final String COMMA = ",";
+	
 	/** The Constant NEWLINE. */
 	public static final String NEWLINE = "\n";
 	
