@@ -24,6 +24,7 @@ import geUtilities.XMLElement;
 import geUtilities.XMLNode;
 import swingTweaks.KButton;
 import geUtilities.FrameInfo;
+import geUtilities.GUI;
 import geUtilities.GameFrameConfig;
 
 public class XMLFrame extends JFrame {
@@ -97,13 +98,13 @@ public class XMLFrame extends JFrame {
 	}
 
 	public void buildScrollPane (JComponent aImage) {
-		buildScrollPane (aImage, null);
+		buildScrollPane (aImage, GUI.NULL_STRING);
 	}
 
 	public void buildScrollPane (JComponent aImage, String aBorderLayout) {
 		scrollPane = new JScrollPane ();
 		scrollPane.setViewportView (aImage);
-		if (aBorderLayout != null) {
+		if (aBorderLayout != GUI.NULL_STRING) {
 			add (scrollPane, aBorderLayout);
 		} else {
 			add (scrollPane);
@@ -113,8 +114,9 @@ public class XMLFrame extends JFrame {
 	public String extractFrameName () {
 		int tIndexLastSpace;
 		String tFrameName;
-		String tPattern = "^(.*) \\([A-Za-z][A-Za-z0-9_]*\\)$";
+		String tPattern;
 
+		tPattern = "^(.*) \\([A-Za-z][A-Za-z0-9_]*\\)$";
 		tFrameName = getTitle ();
 		if (tFrameName.matches (tPattern)) {
 			tIndexLastSpace = tFrameName.lastIndexOf (" ");
@@ -144,7 +146,7 @@ public class XMLFrame extends JFrame {
 		boolean tXMLFileWasLoaded;
 		XMLDocument tXMLDocument;
 
-		if (!("".equals (aXMLFileName))) {
+		if (!(GUI.EMPTY_STRING.equals (aXMLFileName))) {
 			try {
 				tXMLDocument = new XMLDocument (aXMLFileName);
 				aLoadableObject.loadXML (tXMLDocument);
@@ -164,7 +166,8 @@ public class XMLFrame extends JFrame {
 		return tXMLFileWasLoaded;
 	}
 
-	public void setDefaults (int aWidth, int aHeight, int aXLocation, int aYLocation, boolean aVisible, int aHexSize, int aState ) {
+	public void setDefaults (int aWidth, int aHeight, int aXLocation, int aYLocation, boolean aVisible, 
+							int aHexSize, int aState) {
 		defaultWidth = aWidth;
 		defaultHeight = aHeight;
 		defaultXLocation = aXLocation;
@@ -310,8 +313,9 @@ public class XMLFrame extends JFrame {
 	}
 
 	public void toTheFront () {
-		int tState = super.getExtendedState () & ~Frame.ICONIFIED & Frame.NORMAL;
+		int tState;
 
+		tState = super.getExtendedState () & ~Frame.ICONIFIED & Frame.NORMAL;
 		super.setExtendedState (tState);
 		super.setEnabled (true);
 		super.setAlwaysOnTop (true);
@@ -338,9 +342,12 @@ public class XMLFrame extends JFrame {
 	}
 	
 	public Point getOffsetFrame () {
-		Point tFramePoint, tNewPoint;
-		double tX, tY;
-		int tNewX, tNewY;
+		Point tFramePoint;
+		Point tNewPoint;
+		double tX;
+		double tY;
+		int tNewX;
+		int tNewY;
 
 		tFramePoint = getLocation ();
 		tX = tFramePoint.getX ();
@@ -362,7 +369,7 @@ public class XMLFrame extends JFrame {
 	}
 	
 	public void setScrollPanePSize (Dimension aNewDimension) {
-		if (scrollPane != null) {
+		if (scrollPane != GUI.NO_SCROLL_PANE) {
 			scrollPane.setPreferredSize (aNewDimension);
 			scrollPane.revalidate ();
 		}
