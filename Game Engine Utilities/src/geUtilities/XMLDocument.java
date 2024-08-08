@@ -294,4 +294,14 @@ public class XMLDocument {
 
 		return xmlString;
 	}
+	
+	public String MD5 () {
+		Checksum tChecksum;
+		String tMD5Sum;
+		
+		tChecksum = new Checksum ();
+		tMD5Sum = tChecksum.MD5 (toString ());
+		
+		return tMD5Sum;
+	}
 }
