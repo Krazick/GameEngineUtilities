@@ -36,7 +36,7 @@ class AttributeNameTests {
 
 	@Test
 	@DisplayName ("Test Constructor")
-	public void testContructor () {
+	public void attributeNameConstructorTests () {
 		attributeName1 = new AttributeName ("alpha");
 		attributeName2 = new AttributeName ("Alpha");
 		attributeName3 = new AttributeName ("alpha Beta");
