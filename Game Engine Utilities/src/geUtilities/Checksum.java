@@ -7,7 +7,7 @@ public class Checksum {
 	}
 	
 	public String MD5 (XMLDocument aXMLDocument) {
-		return MD5 (aXMLDocument.toString ());
+		return MD5 (aXMLDocument.toXMLString ());
 	}
 	
 	public String MD5 (String aMessage) {
