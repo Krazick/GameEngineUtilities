@@ -1,0 +1,40 @@
+package geUtilities.utilites;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import geUtilities.AttributeName;
+import geUtilities.ElementName;
+import geUtilities.XMLDocument;
+import geUtilities.XMLElement;
+
+class XMLElementTests {
+	XMLElement xmlElement;
+	XMLDocument xmlDocument;
+	ElementName elementName;
+	AttributeName attributeName1;
+	AttributeName attributeName2;
+	
+	@BeforeEach
+	void setUp () throws Exception {
+		xmlDocument = new XMLDocument ();
+		elementName = new ElementName ("TestElement");
+		attributeName1 = new AttributeName ("testAttributeAlpha");
+		attributeName2 = new AttributeName ("testAttributeBeta");
+		
+		xmlElement = xmlDocument.createElement (elementName);
+		xmlElement.setAttribute (attributeName1, "value of an");
+		xmlElement.setAttribute (attributeName2, "This is a test");
+		xmlDocument.appendChild (xmlElement);
+	}
+
+	@Test
+	@DisplayName ("Basic XML Element Tests")
+	void basicXMLElementTests () {
+		assertEquals ("<TestElement testAttributeAlpha=\"value of an\" testAttributeBeta=\"This is a test\"/>\n", 
+						xmlDocument.toString ());
+	}
+}
