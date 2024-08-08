@@ -107,7 +107,6 @@ public class XMLElement {
 		return tFoundElement;
 	}
 	
-//	@Override
 	public String toXMLString () {
 		String tXMLString = GUI.EMPTY_STRING;
 
