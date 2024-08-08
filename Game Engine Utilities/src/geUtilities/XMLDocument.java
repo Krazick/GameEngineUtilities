@@ -254,14 +254,14 @@ public class XMLDocument {
 	}
 
 	public void outputXML (File aFile) {
-		String xmlString = "";
+		String tXMLString = GUI.EMPTY_STRING;
 
 		try {
 			FileWriter tFWout = new FileWriter (aFile);
-			xmlString = toString ();
+			tXMLString = toXMLString ();
 
 			tFWout.write ("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
-			tFWout.write (xmlString);
+			tFWout.write (tXMLString);
 			tFWout.close ();
 		} catch (Exception tException) {
 			System.err.println (tException);
@@ -269,30 +269,28 @@ public class XMLDocument {
 		}
 	}
 
-	@Override
-	public String toString () {
-		String xmlString = "";
+	public String toXMLString () {
+		String tXMLString = GUI.EMPTY_STRING;
 
 		try {
 			// set up a transformer
-			TransformerFactory transfac = TransformerFactory.newInstance ();
-			Transformer trans = transfac.newTransformer ();
-			trans.setOutputProperty (OutputKeys.OMIT_XML_DECLARATION, "yes");
-			trans.setOutputProperty (OutputKeys.INDENT, "yes");
+			TransformerFactory tTransformerFactory = TransformerFactory.newInstance ();
+			Transformer tTransformer = tTransformerFactory.newTransformer ();
+			tTransformer.setOutputProperty (OutputKeys.OMIT_XML_DECLARATION, "yes");
+			tTransformer.setOutputProperty (OutputKeys.INDENT, "yes");
 
 			// create string from XML tree
-			StringWriter sw = new StringWriter ();
-			StreamResult result = new StreamResult (sw);
-			DOMSource source = this.getDOMSource ();
-			trans.transform (source, result);
-			xmlString = sw.toString ();
-//			xmlString = xmlString.replaceAll ("\n *\n", xmlString);
+			StringWriter tStringWriter = new StringWriter ();
+			StreamResult tStreamResult = new StreamResult (tStringWriter);
+			DOMSource tDOMSource = getDOMSource ();
+			tTransformer.transform (tDOMSource, tStreamResult);
+			tXMLString = tStringWriter.toString ();
 		} catch (Exception tException) {
 			System.err.println (tException);
 			tException.printStackTrace ();
 		}
 
-		return xmlString;
+		return tXMLString;
 	}
 	
 	public String MD5 () {
@@ -300,7 +298,7 @@ public class XMLDocument {
 		String tMD5Sum;
 		
 		tChecksum = new Checksum ();
-		tMD5Sum = tChecksum.MD5 (toString ());
+		tMD5Sum = tChecksum.MD5 (toXMLString ());
 		
 		return tMD5Sum;
 	}

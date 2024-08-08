@@ -168,7 +168,7 @@ class XMLDocumentTests {
 				+ "		<Certificate allowedOwners=\"IPO,Player,Share\" director=\"YES\" percentage=\"100\"/>\n"
 				+ "	</Private>\n";
 		tPrivateDocument = buildPrivateCompanyTestDocument ();
-		tResult = tPrivateDocument.toString ();
+		tResult = tPrivateDocument.toXMLString ();
 		assertEquals (tExpected, tResult);
 	}
 }

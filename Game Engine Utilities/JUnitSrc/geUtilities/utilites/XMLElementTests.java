@@ -35,6 +35,13 @@ class XMLElementTests {
 	@DisplayName ("Basic XML Element Tests")
 	void basicXMLElementTests () {
 		assertEquals ("<TestElement testAttributeAlpha=\"value of an\" testAttributeBeta=\"This is a test\"/>\n", 
-						xmlDocument.toString ());
+						xmlDocument.toXMLString ());
+		
+		assertEquals ("<TestElement testAttributeAlpha=\"value of an\" testAttributeBeta=\"This is a test\"/>\n",
+				xmlElement.toXMLString ());
+		
+		assertEquals ("64430fe783626feea8c5af77650761f1", xmlDocument.MD5 ());
+		assertEquals ("64430fe783626feea8c5af77650761f1", xmlElement.MD5 ());
+		
 	}
 }
