@@ -19,7 +19,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
 
-import geUtilities.Checksum;
+import geUtilities.ChecksumCalc;
 import geUtilities.GUI;
 
 public class XMLDocument {
@@ -297,10 +297,10 @@ public class XMLDocument {
 	}
 	
 	public String MD5 () {
-		Checksum tChecksum;
+		ChecksumCalc tChecksum;
 		String tMD5Sum;
 		
-		tChecksum = new Checksum ();
+		tChecksum = new ChecksumCalc ();
 		tMD5Sum = tChecksum.MD5 (toXMLString ());
 		
 		return tMD5Sum;
