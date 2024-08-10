@@ -6,8 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import geUtilities.ElementName;
-import geUtilities.utilites.UtilitiesTestFactory;
+import geUtilities.xml.ElementName;
 import geUtilities.xml.XMLNode;
 
 class XMLNodeTests {

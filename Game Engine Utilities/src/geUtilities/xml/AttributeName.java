@@ -1,4 +1,4 @@
-package geUtilities;
+package geUtilities.xml;
 
 public class AttributeName extends NoSpaceString {
 

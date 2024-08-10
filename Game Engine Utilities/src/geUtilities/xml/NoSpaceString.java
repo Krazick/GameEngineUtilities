@@ -2,7 +2,9 @@
  * Game Engine Utilities (geUtilities) Package that are used for various Game Engines.
  * This package will not have any game specific classes or methods.
  */
-package geUtilities;
+package geUtilities.xml;
+
+import geUtilities.GUI;
 
 /**
  * The Class NoSpaceString, that will only allow a String without Spaces, or null
