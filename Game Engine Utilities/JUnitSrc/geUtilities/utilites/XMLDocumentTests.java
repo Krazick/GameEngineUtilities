@@ -14,7 +14,7 @@ import org.w3c.dom.Document;
 import geUtilities.ElementName;
 import geUtilities.XMLDocument;
 import geUtilities.XMLElement;
-import geUtilities.XMLNode;
+import geUtilities.xml.XMLNode;
 
 @DisplayName ("XMLDocument Tests")
 class XMLDocumentTests {

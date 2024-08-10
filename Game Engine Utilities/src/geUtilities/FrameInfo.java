@@ -1,6 +1,7 @@
 package geUtilities;
 
 import geUtilities.xml.XMLFrame;
+import geUtilities.xml.XMLNode;
 
 public class FrameInfo {
 	public static final AttributeName AN_NAME = new AttributeName ("name");

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import org.w3c.dom.NodeList;
 
+import geUtilities.xml.XMLNode;
+
 public class GameFrameConfig {
 	public static final AttributeName AN_GAME_NAME = new AttributeName ("gameName");
 	public static final ElementName EN_FRAME = new ElementName ("Frame");

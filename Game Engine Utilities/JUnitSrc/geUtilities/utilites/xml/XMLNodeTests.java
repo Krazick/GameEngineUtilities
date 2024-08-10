@@ -1,4 +1,4 @@
-package geUtilities.utilites;
+package geUtilities.utilites.xml;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -7,7 +7,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import geUtilities.ElementName;
-import geUtilities.XMLNode;
+import geUtilities.utilites.UtilitiesTestFactory;
+import geUtilities.xml.XMLNode;
 
 class XMLNodeTests {
 	UtilitiesTestFactory utilityTestFactory;

@@ -4,7 +4,7 @@ import org.mockito.Mockito;
 
 import geUtilities.XMLDocument;
 import geUtilities.XMLElement;
-import geUtilities.XMLNode;
+import geUtilities.xml.XMLNode;
 
 public class UtilitiesTestFactory {
 	XMLDocument theXMLDocument;

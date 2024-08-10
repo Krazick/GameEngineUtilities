@@ -21,7 +21,6 @@ import javax.swing.JScrollPane;
 
 import geUtilities.XMLDocument;
 import geUtilities.XMLElement;
-import geUtilities.XMLNode;
 import swingTweaks.KButton;
 import geUtilities.FrameInfo;
 import geUtilities.GUI;

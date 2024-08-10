@@ -9,7 +9,6 @@ import geUtilities.ParsingRoutine3I;
 import geUtilities.ParsingRoutineI;
 import geUtilities.ParsingRoutineIO;
 import geUtilities.ParsingRoutineIOO;
-import geUtilities.XMLNode;
 
 public class XMLNodeList {
 	private static Object NO_OBJECT = null;

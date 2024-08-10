@@ -1,5 +1,7 @@
 package geUtilities;
 
+import geUtilities.xml.XMLNode;
+
 public interface ParsingRoutineIO extends ParsingRoutineI {
 	/*
 	 * Support Callback Functions when a XML Node Name matches a specified value

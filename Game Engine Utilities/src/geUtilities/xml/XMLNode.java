@@ -1,4 +1,4 @@
-package geUtilities;
+package geUtilities.xml;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -19,7 +19,10 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import geUtilities.xml.XMLTransformer;
+import geUtilities.AttributeName;
+import geUtilities.ElementName;
+import geUtilities.GUI;
+import geUtilities.XMLElement;
 
 public class XMLNode {
 	public static final String XML_TEXT_TAG = "#text";
