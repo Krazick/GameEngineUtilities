@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import geUtilities.ChecksumCalc;
 import geUtilities.GUI;
 
-class CheckSumTests {
+class ChecksumCalcTests {
 	ChecksumCalc checksumCalc;
 	
 	@BeforeEach
