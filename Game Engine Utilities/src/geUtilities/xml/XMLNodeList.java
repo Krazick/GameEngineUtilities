@@ -1,6 +1,15 @@
-package geUtilities;
+package geUtilities.xml;
 
 import org.w3c.dom.NodeList;
+
+import geUtilities.ElementName;
+import geUtilities.ParsingRoutine2I;
+import geUtilities.ParsingRoutine2IO;
+import geUtilities.ParsingRoutine3I;
+import geUtilities.ParsingRoutineI;
+import geUtilities.ParsingRoutineIO;
+import geUtilities.ParsingRoutineIOO;
+import geUtilities.XMLNode;
 
 public class XMLNodeList {
 	private static Object NO_OBJECT = null;
