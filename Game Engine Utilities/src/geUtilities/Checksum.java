@@ -1,5 +1,7 @@
 package geUtilities;
 
+import geUtilities.xml.XMLDocument;
+
 public class Checksum {
 
 	public Checksum () {

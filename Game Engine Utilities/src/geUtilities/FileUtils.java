@@ -6,6 +6,8 @@ import java.io.IOException;
 
 import org.apache.logging.log4j.Logger;
 
+import geUtilities.xml.XMLDocument;
+
 public class FileUtils {
 	public static final File NO_FILE = null;
 	public static final FileUtils NO_FILE_UTILS = null;

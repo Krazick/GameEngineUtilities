@@ -10,6 +10,8 @@ package geUtilities;
 
 import java.io.IOException;
 
+import geUtilities.xml.XMLDocument;
+
 public interface LoadableXMLI extends ParsingRoutineI {
 	/* Returns the name of the Loadable Object for Error Messages */
 	public String getTypeName ();

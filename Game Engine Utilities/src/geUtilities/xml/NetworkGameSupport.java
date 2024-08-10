@@ -5,7 +5,6 @@ import java.awt.Point;
 import org.apache.logging.log4j.Logger;
 
 import geUtilities.FileUtils;
-import geUtilities.XMLElement;
 
 public interface NetworkGameSupport {
 	public final String NO_NAME = "";

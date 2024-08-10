@@ -1,4 +1,4 @@
-package geUtilities;
+package geUtilities.xml;
 
 import java.io.StringWriter;
 
@@ -11,6 +11,11 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import geUtilities.AttributeName;
+import geUtilities.Checksum;
+import geUtilities.ElementName;
+import geUtilities.GUI;
 
 public class XMLElement {
 	public static XMLElement NO_XML_ELEMENT = null;

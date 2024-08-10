@@ -2,8 +2,8 @@ package geUtilities.utilites;
 
 import org.mockito.Mockito;
 
-import geUtilities.XMLDocument;
-import geUtilities.XMLElement;
+import geUtilities.xml.XMLDocument;
+import geUtilities.xml.XMLElement;
 import geUtilities.xml.XMLNode;
 
 public class UtilitiesTestFactory {

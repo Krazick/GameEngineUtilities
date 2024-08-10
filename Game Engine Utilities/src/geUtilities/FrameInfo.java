@@ -1,5 +1,6 @@
 package geUtilities;
 
+import geUtilities.xml.XMLElement;
 import geUtilities.xml.XMLFrame;
 import geUtilities.xml.XMLNode;
 

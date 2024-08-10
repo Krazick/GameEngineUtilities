@@ -22,7 +22,6 @@ import org.w3c.dom.NodeList;
 import geUtilities.AttributeName;
 import geUtilities.ElementName;
 import geUtilities.GUI;
-import geUtilities.XMLElement;
 
 public class XMLNode {
 	public static final String XML_TEXT_TAG = "#text";

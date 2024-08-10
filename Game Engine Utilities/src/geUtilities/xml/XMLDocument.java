@@ -1,4 +1,4 @@
-package geUtilities;
+package geUtilities.xml;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -19,7 +19,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
 
-import geUtilities.xml.XMLNode;
+import geUtilities.Checksum;
+import geUtilities.ElementName;
+import geUtilities.GUI;
 
 public class XMLDocument {
 	public static final Document NO_DOCUMENT = null;

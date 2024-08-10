@@ -11,16 +11,6 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
-//
-//  XMLFrames.java
-//  Game_18XX
-//
-//  Created by Mark Smith on 11/28/07.
-//  Copyright 2007 __MyCompanyName__. All rights reserved.
-//
-
-import geUtilities.XMLDocument;
-import geUtilities.XMLElement;
 import swingTweaks.KButton;
 import geUtilities.FrameInfo;
 import geUtilities.GUI;

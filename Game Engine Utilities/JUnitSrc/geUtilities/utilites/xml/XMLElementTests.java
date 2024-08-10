@@ -1,4 +1,4 @@
-package geUtilities.utilites;
+package geUtilities.utilites.xml;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import geUtilities.AttributeName;
 import geUtilities.ElementName;
-import geUtilities.XMLDocument;
-import geUtilities.XMLElement;
+import geUtilities.xml.XMLDocument;
+import geUtilities.xml.XMLElement;
 
 class XMLElementTests {
 	XMLElement xmlElement;

@@ -11,7 +11,6 @@ import java.io.IOException;
 //
 
 import geUtilities.ParsingRoutineI;
-import geUtilities.XMLDocument;
 
 public interface LoadableXMLI extends ParsingRoutineI {
 	/* Returns the name of the Loadable Object for Error Messages */

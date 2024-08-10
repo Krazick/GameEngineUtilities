@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import org.w3c.dom.NodeList;
 
+import geUtilities.xml.XMLDocument;
+import geUtilities.xml.XMLElement;
 import geUtilities.xml.XMLNode;
 
 public class GameFrameConfig {

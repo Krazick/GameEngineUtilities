@@ -1,4 +1,4 @@
-package geUtilities.utilites;
+package geUtilities.utilites.xml;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -12,8 +12,9 @@ import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 
 import geUtilities.ElementName;
-import geUtilities.XMLDocument;
-import geUtilities.XMLElement;
+import geUtilities.utilites.UtilitiesTestFactory;
+import geUtilities.xml.XMLDocument;
+import geUtilities.xml.XMLElement;
 import geUtilities.xml.XMLNode;
 
 @DisplayName ("XMLDocument Tests")
