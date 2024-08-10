@@ -6,15 +6,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import geUtilities.Checksum;
+import geUtilities.ChecksumCalc;
 import geUtilities.GUI;
 
 class CheckSumTests {
-	Checksum checksum;
+	ChecksumCalc checksumCalc;
 	
 	@BeforeEach
 	void setUp () throws Exception {
-		checksum = new Checksum ();
+		checksumCalc = new ChecksumCalc ();
 	}
 
 	@Test
@@ -24,16 +24,16 @@ class CheckSumTests {
 		String tChecksum;
 		
 		tMessage = GUI.NULL_STRING;
-		tChecksum = checksum.MD5 (tMessage);
+		tChecksum = checksumCalc.MD5 (tMessage);
 //		System.out.println ("Message [" + tMessage + "] Checksum [" + tChecksum + "]");
 		assertEquals (GUI.NULL_STRING, tChecksum);
 
 		tMessage = GUI.EMPTY_STRING;
-		tChecksum = checksum.MD5 (tMessage);
+		tChecksum = checksumCalc.MD5 (tMessage);
 		assertEquals ("d41d8cd98f00b204e9800998ecf8427e", tChecksum);
 
 		tMessage = "This is a test of the Checksum Routine";
-		tChecksum = checksum.MD5 (tMessage);
+		tChecksum = checksumCalc.MD5 (tMessage);
 		assertEquals ("bcd6504ea437f52b01416a81df4e5968", tChecksum);
 
 		String tPrivateCompany1TestXML = "<Private id=\"802\" name=\"TEST-Champlain &amp; St. Lawrence\" abbrev=\"TEST-C&amp;SL\" cost=\"40\" \n"
@@ -43,7 +43,7 @@ class CheckSumTests {
 				+ "			<Benefit actorType=\"Share Company\" class=\"ge18xx.company.benefit.TilePlacementBenefit\" extra=\"true\" mapCell=\"B20\" cost=\"0\" passive=\"false\"/>\n"
 				+ "		</Benefits>\n" + "		<Certificate director=\"YES\" percentage=\"100\"\n"
 				+ "			allowedOwners=\"IPO,Player,Share\" />\n" + "	</Private>\n";
-		tChecksum = checksum.MD5 (tPrivateCompany1TestXML);
+		tChecksum = checksumCalc.MD5 (tPrivateCompany1TestXML);
 		assertEquals ("0662a360ec39f4ad6f0ef5cbb856daa1", tChecksum);
 	}
 
