@@ -3,7 +3,10 @@ package geUtilities.utilites;
 import java.util.LinkedList;
 import java.util.List;
 
+import geUtilities.xml.ElementName;
+
 public class Checksums {
+	public static final ElementName EN_CHECKSUMS = new ElementName ("Checksums");
 	public static final Checksums NO_CHECKSUMS = null;
 	public static final int NOT_FOUND = -1;
 	List<Checksum> checksums;
@@ -18,6 +21,14 @@ public class Checksums {
 	
 	public Checksum get (int aIndex) {
 		return checksums.get (aIndex);
+	}
+	
+	public Checksum getLast () {
+		Checksum tLastChecksum;
+		
+		tLastChecksum = get (checksums.size () - 1);
+		
+		return tLastChecksum;
 	}
 	
 	public int findIndexFor (int aActionNumber) {
