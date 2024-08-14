@@ -1,4 +1,4 @@
-package geUtilities.utilites;
+package geUtilities;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -69,11 +69,16 @@ public class Checksums {
 		return checksums.size ();
 	}
 	
-	public void printChecksums () {
+	public String printChecksums () {
+		String tAllDetails;
+		
+		tAllDetails = GUI.EMPTY_STRING;
 		if (!checksums.isEmpty ()) {
 			for (Checksum tChecksum : checksums) {
-				tChecksum.printInfo ();
+				tAllDetails = tChecksum.getAllDetails ();
 			}
 		}
+		
+		return tAllDetails;
 	}
 }

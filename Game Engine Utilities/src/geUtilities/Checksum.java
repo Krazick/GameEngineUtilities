@@ -1,6 +1,5 @@
-package geUtilities.utilites;
+package geUtilities;
 
-import geUtilities.GUI;
 import geUtilities.xml.AttributeName;
 import geUtilities.xml.ElementName;
 import geUtilities.xml.XMLDocument;
@@ -70,20 +69,29 @@ public class Checksum implements XMLSaveGameI {
 		return checksums [aPlayerIndex];
 	}
 	
-	public void printInfo () {
+	public String getAllDetails () {
+		String tDetail;
+		
+		tDetail = GUI.EMPTY_STRING;
 		for (int tPlayerIndex = 0; tPlayerIndex < checksums.length; tPlayerIndex++) {
 			if (checksums [tPlayerIndex] != GUI.NULL_STRING) {
-				printInfo (tPlayerIndex);
+				tDetail += getDetailFor (tPlayerIndex);
 			}
 		}
+		
+		return tDetail;
 	}
 	
-	public void printInfo (int aPlayerIndex) {
-		System.out.println ("ID: " + gameID + 
-							" Action Number: " + actionNumber +
-							" Node Name: " + nodeName +
-							" Client Name: " + getClientName () +
-							" Checksum: " + getChecksum (aPlayerIndex));
+	public String getDetailFor (int aPlayerIndex) {
+		String tDetail;
+		
+		tDetail = "ID: " + gameID + 
+					" Action Number: " + actionNumber +
+					" Node Name: " + nodeName +
+					" Client Name: " + getClientName () +
+					" Checksum [" + aPlayerIndex + "] " + getChecksum (aPlayerIndex) + "\n";
+		
+		return tDetail;
 	}
 	
 	@Override
