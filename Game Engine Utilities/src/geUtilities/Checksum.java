@@ -14,7 +14,8 @@ public class Checksum implements XMLSaveGameI {
 	public static final AttributeName AN_CHECKSUM = new AttributeName ("checksum");
 	public static final AttributeName AN_PLAYER_INDEX = new AttributeName ("playerIndex");
 	public static final ElementName EN_CHECKSUM = new ElementName ("Checksum");
-
+	public static final Checksum NO_CHECKSUM = null;
+	
 	String gameID;
 	String clientName;
 	String nodeName;
@@ -66,30 +67,42 @@ public class Checksum implements XMLSaveGameI {
 	}
 	
 	public String getChecksum (int aPlayerIndex) {
-		return checksums [aPlayerIndex];
+		String tChecksum;
+		
+		tChecksum = checksums [aPlayerIndex];
+		if (tChecksum == GUI.NULL_STRING) {
+			tChecksum = "NO-CHECKSUM";
+		}
+		
+		return tChecksum;
 	}
 	
 	public String getAllDetails () {
 		String tDetail;
 		
-		tDetail = GUI.EMPTY_STRING;
+		tDetail = getCommonDetail ();
 		for (int tPlayerIndex = 0; tPlayerIndex < checksums.length; tPlayerIndex++) {
-			if (checksums [tPlayerIndex] != GUI.NULL_STRING) {
-				tDetail += getDetailFor (tPlayerIndex);
-			}
+			tDetail += getDetailFor (tPlayerIndex);
 		}
 		
 		return tDetail;
 	}
 	
-	public String getDetailFor (int aPlayerIndex) {
+	public String getCommonDetail () {
 		String tDetail;
 		
 		tDetail = "ID: " + gameID + 
 					" Action Number: " + actionNumber +
 					" Node Name: " + nodeName +
-					" Client Name: " + getClientName () +
-					" Checksum [" + aPlayerIndex + "] " + getChecksum (aPlayerIndex) + "\n";
+					" Client Name: " + getClientName ();
+		
+		return tDetail;
+
+	}
+	public String getDetailFor (int aPlayerIndex) {
+		String tDetail;
+
+		tDetail = " Checksum [" + aPlayerIndex + "] " + getChecksum (aPlayerIndex) + "\n";
 		
 		return tDetail;
 	}

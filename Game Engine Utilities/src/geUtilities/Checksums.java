@@ -20,7 +20,15 @@ public class Checksums {
 	}
 	
 	public Checksum get (int aIndex) {
-		return checksums.get (aIndex);
+		Checksum tChecksum;
+		
+		if ((aIndex < 0) || (aIndex >= checksums.size ())) {
+			tChecksum = Checksum.NO_CHECKSUM;
+		} else {
+			tChecksum = checksums.get (aIndex);
+		}
+		
+		return tChecksum;
 	}
 	
 	public Checksum getLast () {
@@ -41,7 +49,7 @@ public class Checksums {
 		if (!checksums.isEmpty ()) {
 			tCount = size ();
 			for (tIndex = 0; tIndex < tCount; tIndex++) {
-				tChecksum = checksums.get (tFoundIndex);
+				tChecksum = checksums.get (tIndex);
 				if (tChecksum.getActionNumber () == aActionNumber) {
 					tFoundIndex = tIndex;
 				}
@@ -69,13 +77,13 @@ public class Checksums {
 		return checksums.size ();
 	}
 	
-	public String printChecksums () {
+	public String getDetailAllChecksums () {
 		String tAllDetails;
 		
 		tAllDetails = GUI.EMPTY_STRING;
 		if (!checksums.isEmpty ()) {
 			for (Checksum tChecksum : checksums) {
-				tAllDetails = tChecksum.getAllDetails ();
+				tAllDetails += tChecksum.getAllDetails ();
 			}
 		}
 		
