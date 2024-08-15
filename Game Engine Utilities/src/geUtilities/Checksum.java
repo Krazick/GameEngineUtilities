@@ -66,6 +66,10 @@ public class Checksum implements XMLSaveGameI {
 		checksums [aPlayerIndex] = aChecksum;
 	}
 	
+	public String [] getChecksums () {
+		return checksums;
+	}
+	
 	public String getChecksum (int aPlayerIndex) {
 		String tChecksum;
 		
@@ -99,6 +103,11 @@ public class Checksum implements XMLSaveGameI {
 		return tDetail;
 
 	}
+	
+	public int size () {
+		return checksums.length + 5;
+	}
+	
 	public String getDetailFor (int aPlayerIndex) {
 		String tDetail;
 
