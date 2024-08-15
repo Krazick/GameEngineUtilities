@@ -127,5 +127,3 @@ public class Checksum implements XMLSaveGameI {
 		return tXMLElement;
 	}
 }
-
-
