@@ -50,7 +50,7 @@ public class Checksums {
 			tCount = size ();
 			for (tIndex = 0; tIndex < tCount; tIndex++) {
 				tChecksum = checksums.get (tIndex);
-				if (tChecksum.getActionNumber () == aActionNumber) {
+				if (tChecksum.getActionIndex () == aActionNumber) {
 					tFoundIndex = tIndex;
 				}
 			}

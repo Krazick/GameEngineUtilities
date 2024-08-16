@@ -38,7 +38,7 @@ class ChecksumsTests {
 		
 		checksums.add (checksum1);
 		assertEquals (
-				"ID: 2024-08-14-1600 Action Number: 101 Node Name: Game Client Name: Buster" +
+				"ID: 2024-08-14-1600 Action Index: 101 Node Name: Game Client Name: Buster" +
 						" Checksum [0] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [1] NO-CHECKSUM\n" +
 						" Checksum [2] NO-CHECKSUM\n",
@@ -49,20 +49,20 @@ class ChecksumsTests {
 		
 		tChecksumAlpha.addClientChecksum (1, "fb1ed0c56294da977e869b9e49df239a");
 		assertEquals (
-				"ID: 2024-08-14-1600 Action Number: 101 Node Name: Game Client Name: Buster" +
+				"ID: 2024-08-14-1600 Action Index: 101 Node Name: Game Client Name: Buster" +
 						" Checksum [0] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [1] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [2] NO-CHECKSUM\n",
 						checksums.getDetailAllChecksums ());
 		tChecksumAlpha.addClientChecksum (2, "fb1ed0c56294da977e869b9e49df239a");
 		assertNotEquals (
-				"ID: 2024-08-14-1600 Action Number: 101 Node Name: Game Client Name: Buster" +
+				"ID: 2024-08-14-1600 Action Index: 101 Node Name: Game Client Name: Buster" +
 						" Checksum [0] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [1] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [2] NO-CHECKSUM\n",
 						checksums.getDetailAllChecksums ());
 		assertEquals (
-				"ID: 2024-08-14-1600 Action Number: 101 Node Name: Game Client Name: Buster" +
+				"ID: 2024-08-14-1600 Action Index: 101 Node Name: Game Client Name: Buster" +
 						" Checksum [0] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [1] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [2] fb1ed0c56294da977e869b9e49df239a\n",
@@ -85,11 +85,11 @@ class ChecksumsTests {
 		tChecksumBeta.addClientChecksum (0, "fb1ed0c56294da977e869bxe49df239a");
 
 		assertEquals (
-				"ID: 2024-08-14-1600 Action Number: 101 Node Name: Game Client Name: Buster" +
+				"ID: 2024-08-14-1600 Action Index: 101 Node Name: Game Client Name: Buster" +
 						" Checksum [0] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [1] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [2] fb1ed0c56294da977e869b9e49df239a\n" +
-				"ID: 2024-08-14-1600 Action Number: 102 Node Name: Game Client Name: Buster" +
+				"ID: 2024-08-14-1600 Action Index: 102 Node Name: Game Client Name: Buster" +
 						" Checksum [0] fb1ed0c56294da977e869bxe49df239a\n" +
 						" Checksum [1] NO-CHECKSUM\n" +
 						" Checksum [2] fb1ed0c56294da977e869bxe49df239a\n",
@@ -100,15 +100,15 @@ class ChecksumsTests {
 		assertEquals (3, checksums.size ());
 		
 		assertEquals (
-				"ID: 2024-08-14-1600 Action Number: 101 Node Name: Game Client Name: Buster" +
+				"ID: 2024-08-14-1600 Action Index: 101 Node Name: Game Client Name: Buster" +
 						" Checksum [0] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [1] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [2] fb1ed0c56294da977e869b9e49df239a\n" +
-				"ID: 2024-08-14-1600 Action Number: 102 Node Name: Game Client Name: Buster" +
+				"ID: 2024-08-14-1600 Action Index: 102 Node Name: Game Client Name: Buster" +
 						" Checksum [0] fb1ed0c56294da977e869bxe49df239a\n" +
 						" Checksum [1] NO-CHECKSUM\n" +
 						" Checksum [2] fb1ed0c56294da977e869bxe49df239a\n" +
-				"ID: 2024-08-14-1600 Action Number: 103 Node Name: Game Client Name: Buster" +
+				"ID: 2024-08-14-1600 Action Index: 103 Node Name: Game Client Name: Buster" +
 						" Checksum [0] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [1] NO-CHECKSUM\n" +
 						" Checksum [2] NO-CHECKSUM\n",

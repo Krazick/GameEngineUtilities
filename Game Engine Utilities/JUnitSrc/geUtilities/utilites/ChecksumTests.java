@@ -27,7 +27,7 @@ class ChecksumTests {
 		tDetail = checksum.getAllDetails ();
 		
 		assertEquals (
-			"ID: 2024-08-13-2010 Action Number: 101 Node Name: Game Client Name: Buster" +
+			"ID: 2024-08-13-2010 Action Index: 101 Node Name: Game Client Name: Buster" +
 					" Checksum [0] fb1ed0c56294da977e869b9e49df239a\n" +
 					" Checksum [1] NO-CHECKSUM\n" +
 					" Checksum [2] NO-CHECKSUM\n",
@@ -36,7 +36,7 @@ class ChecksumTests {
 		checksum.addClientChecksum (1, "fb1ed0c56294da977e869b9e49df239a");
 		tDetail = checksum.getAllDetails ();
 		assertEquals (
-				"ID: 2024-08-13-2010 Action Number: 101 Node Name: Game Client Name: Buster" +
+				"ID: 2024-08-13-2010 Action Index: 101 Node Name: Game Client Name: Buster" +
 						" Checksum [0] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [1] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [2] NO-CHECKSUM\n",
