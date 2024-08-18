@@ -1,4 +1,4 @@
-package geUtilities;
+package checksum;
 
 import java.lang.NullPointerException;
 

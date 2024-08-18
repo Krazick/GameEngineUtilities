@@ -1,9 +1,9 @@
-package geUtilities.utilites;
+package geUtilities.checksum;
 
 import org.mockito.Mockito;
 
-import geUtilities.Checksum;
-import geUtilities.Checksums;
+import checksum.Checksum;
+import checksum.Checksums;
 
 public class ChecksumTestFactory {
 	String gameID;

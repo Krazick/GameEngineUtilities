@@ -6,7 +6,7 @@ import org.junit.platform.suite.api.SuiteDisplayName;
 
 @Suite
 @SuiteDisplayName ("Game Engine Utilities Test Suite")
-@SelectPackages ("geUtilities")
+@SelectPackages ( { "geUtilities", "geUtilities.xml", "geUtilities.checksum" } )
 class GEUtilitiesTestSuite {
 
 }

@@ -19,7 +19,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
 
-import geUtilities.ChecksumCalc;
+import checksum.ChecksumCalc;
 import geUtilities.GUI;
 
 public class XMLDocument {

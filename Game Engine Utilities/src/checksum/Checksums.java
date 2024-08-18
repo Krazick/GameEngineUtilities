@@ -1,8 +1,9 @@
-package geUtilities;
+package checksum;
 
 import java.util.LinkedList;
 import java.util.List;
 
+import geUtilities.GUI;
 import geUtilities.xml.ElementName;
 
 public class Checksums {

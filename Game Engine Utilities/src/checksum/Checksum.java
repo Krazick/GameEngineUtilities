@@ -1,5 +1,6 @@
-package geUtilities;
+package checksum;
 
+import geUtilities.GUI;
 import geUtilities.xml.AttributeName;
 import geUtilities.xml.ElementName;
 import geUtilities.xml.XMLDocument;
