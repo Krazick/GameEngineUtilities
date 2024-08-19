@@ -23,9 +23,9 @@ class ChecksumsTests {
 		
 		checksumTestFactory = new ChecksumTestFactory ("2024-08-14-1600");
 		checksums = checksumTestFactory.buildChecksums ();
-		checksum1 = checksumTestFactory.buildChecksum (101);
-		checksum2 = checksumTestFactory.buildChecksum (102);
-		checksum3 = checksumTestFactory.buildChecksum (103);
+		checksum1 = checksumTestFactory.buildChecksum (1);
+		checksum2 = checksumTestFactory.buildChecksum (2);
+		checksum3 = checksumTestFactory.buildChecksum (3);
 	}
 
 	@Test
@@ -38,7 +38,7 @@ class ChecksumsTests {
 		
 		checksums.add (checksum1);
 		assertEquals (
-				"ID: 2024-08-14-1600 Action Index: 101 Node Name: Game Client Name: Buster" +
+				"ID: 2024-08-14-1600 Action Index: 1 Node Name: Game Client Name: Buster" +
 						" Checksum [0] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [1] NO-CHECKSUM\n" +
 						" Checksum [2] NO-CHECKSUM\n",
@@ -49,20 +49,20 @@ class ChecksumsTests {
 		
 		tChecksumAlpha.addClientChecksum (1, "fb1ed0c56294da977e869b9e49df239a");
 		assertEquals (
-				"ID: 2024-08-14-1600 Action Index: 101 Node Name: Game Client Name: Buster" +
+				"ID: 2024-08-14-1600 Action Index: 1 Node Name: Game Client Name: Buster" +
 						" Checksum [0] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [1] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [2] NO-CHECKSUM\n",
 						checksums.getDetailAllChecksums ());
 		tChecksumAlpha.addClientChecksum (2, "fb1ed0c56294da977e869b9e49df239a");
 		assertNotEquals (
-				"ID: 2024-08-14-1600 Action Index: 101 Node Name: Game Client Name: Buster" +
+				"ID: 2024-08-14-1600 Action Index: 1 Node Name: Game Client Name: Buster" +
 						" Checksum [0] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [1] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [2] NO-CHECKSUM\n",
 						checksums.getDetailAllChecksums ());
 		assertEquals (
-				"ID: 2024-08-14-1600 Action Index: 101 Node Name: Game Client Name: Buster" +
+				"ID: 2024-08-14-1600 Action Index: 1 Node Name: Game Client Name: Buster" +
 						" Checksum [0] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [1] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [2] fb1ed0c56294da977e869b9e49df239a\n",
@@ -85,11 +85,11 @@ class ChecksumsTests {
 		tChecksumBeta.addClientChecksum (0, "fb1ed0c56294da977e869bxe49df239a");
 
 		assertEquals (
-				"ID: 2024-08-14-1600 Action Index: 101 Node Name: Game Client Name: Buster" +
+				"ID: 2024-08-14-1600 Action Index: 1 Node Name: Game Client Name: Buster" +
 						" Checksum [0] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [1] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [2] fb1ed0c56294da977e869b9e49df239a\n" +
-				"ID: 2024-08-14-1600 Action Index: 102 Node Name: Game Client Name: Buster" +
+				"ID: 2024-08-14-1600 Action Index: 2 Node Name: Game Client Name: Buster" +
 						" Checksum [0] fb1ed0c56294da977e869bxe49df239a\n" +
 						" Checksum [1] NO-CHECKSUM\n" +
 						" Checksum [2] fb1ed0c56294da977e869bxe49df239a\n",
@@ -100,32 +100,32 @@ class ChecksumsTests {
 		assertEquals (3, checksums.size ());
 		
 		assertEquals (
-				"ID: 2024-08-14-1600 Action Index: 101 Node Name: Game Client Name: Buster" +
+				"ID: 2024-08-14-1600 Action Index: 1 Node Name: Game Client Name: Buster" +
 						" Checksum [0] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [1] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [2] fb1ed0c56294da977e869b9e49df239a\n" +
-				"ID: 2024-08-14-1600 Action Index: 102 Node Name: Game Client Name: Buster" +
+				"ID: 2024-08-14-1600 Action Index: 2 Node Name: Game Client Name: Buster" +
 						" Checksum [0] fb1ed0c56294da977e869bxe49df239a\n" +
 						" Checksum [1] NO-CHECKSUM\n" +
 						" Checksum [2] fb1ed0c56294da977e869bxe49df239a\n" +
-				"ID: 2024-08-14-1600 Action Index: 103 Node Name: Game Client Name: Buster" +
+				"ID: 2024-08-14-1600 Action Index: 3 Node Name: Game Client Name: Buster" +
 						" Checksum [0] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [1] NO-CHECKSUM\n" +
 						" Checksum [2] NO-CHECKSUM\n",
 
 						checksums.getDetailAllChecksums ());
 		
-		assertEquals (1, checksums.findIndexFor (102));
-		assertEquals (Checksums.NOT_FOUND, checksums.findIndexFor (404));
+		assertEquals (1, checksums.findIndexFor (2));
+		assertEquals (Checksums.NOT_FOUND, checksums.findIndexFor (4));
 		
-		checksums.removeAtNumber (404);
+		checksums.removeActionIndex (4);
 		assertEquals (3, checksums.size ());
-		checksums.removeAtNumber (101);
+		checksums.removeActionIndex (1);
 		assertEquals (2, checksums.size ());
 		
 		checksums.remove (1);
 		checksums.remove (0);
-		assertEquals (Checksums.NOT_FOUND, checksums.findIndexFor (404));
+		assertEquals (Checksums.NOT_FOUND, checksums.findIndexFor (4));
 		
 		assertEquals (Checksum.NO_CHECKSUM, checksums.getLast ());
 		assertEquals (Checksum.NO_CHECKSUM, checksums.get (5));

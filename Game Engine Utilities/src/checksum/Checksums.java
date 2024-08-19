@@ -40,7 +40,7 @@ public class Checksums {
 		return tLastChecksum;
 	}
 	
-	public int findIndexFor (int aActionNumber) {
+	public int findIndexFor (int aActionIndex) {
 		int tIndex;
 		int tCount;
 		int tFoundIndex;
@@ -51,7 +51,7 @@ public class Checksums {
 			tCount = size ();
 			for (tIndex = 0; tIndex < tCount; tIndex++) {
 				tChecksum = checksums.get (tIndex);
-				if (tChecksum.getActionIndex () == aActionNumber) {
+				if (tChecksum.getActionIndex () == aActionIndex) {
 					tFoundIndex = tIndex;
 				}
 			}
@@ -61,10 +61,10 @@ public class Checksums {
 		return tFoundIndex;
 	}
 	
-	public void removeAtNumber (int aActionNumber) {
+	public void removeActionIndex (int aActionIndex) {
 		int tIndex;
 		
-		tIndex = findIndexFor (aActionNumber);
+		tIndex = findIndexFor (aActionIndex);
 		if (tIndex != NOT_FOUND) {
 			remove (tIndex);
 		}
