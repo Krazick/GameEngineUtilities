@@ -27,10 +27,16 @@ public class ChecksumCalc {
 	}
 	
 	public String MD5 (String aMessage) {
-	   try {
-	        MessageDigest tMD = java.security.MessageDigest.getInstance (algorithm);
-	        byte [] tBytes = tMD.digest (aMessage.getBytes ());
-	        StringBuffer tStringBuffer = new StringBuffer ();
+		//
+		StringBuffer tStringBuffer;
+		String tTrimmedMessage;
+		byte [] tBytes;
+		
+		try {
+			tTrimmedMessage = aMessage.replace ("\r\n", "\n").replace ("    ", "").replace ("\n\n", "\n");
+			MessageDigest tMD = java.security.MessageDigest.getInstance (algorithm);
+			tBytes = tMD.digest (tTrimmedMessage.getBytes ());
+			tStringBuffer = new StringBuffer ();
 	        
 	        for (int i = 0; i < tBytes.length; ++i) {
 	          tStringBuffer.append (Integer.toHexString ((tBytes [i] & 0xFF) | 0x100).substring (1, 3));
