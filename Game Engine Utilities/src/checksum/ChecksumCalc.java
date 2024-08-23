@@ -22,6 +22,14 @@ public class ChecksumCalc {
 		algorithm = aAlgorithm;
 	}
 
+	public String stripWhitespaceFromXML (String aMessage) {
+		String tTrimmedMessage;
+		
+		tTrimmedMessage = aMessage.replaceAll ("\r\n", "\n").replaceAll ("    ", "").replace ("\n\n", "\n");
+
+		return tTrimmedMessage;
+	}
+	
 	public String MD5 (XMLDocument aXMLDocument) {
 		return MD5 (aXMLDocument.toXMLString ());
 	}
@@ -34,7 +42,7 @@ public class ChecksumCalc {
 		byte [] tBytes;
 		
 		try {
-			tTrimmedMessage = aMessage.replace ("\r\n", "\n").replace ("    ", "").replace ("\n\n", "\n");
+			tTrimmedMessage = aMessage.replaceAll ("\r\n", "\n").replaceAll ("    ", "").replace ("\n\n", "\n");
 			tMD = java.security.MessageDigest.getInstance (algorithm);
 			tBytes = tMD.digest (tTrimmedMessage.getBytes ());
 			tStringBuffer = new StringBuffer ();
