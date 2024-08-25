@@ -8,6 +8,9 @@ import java.security.NoSuchAlgorithmException;
 import geUtilities.xml.XMLDocument;
 
 public class ChecksumCalc {
+	public static final boolean STRIP_WHITESPACE = true;
+	public static final boolean DONT_STRIP_WHITESPACE = false;
+	
 	private String algorithm;
 	
 	public ChecksumCalc () {
@@ -25,16 +28,20 @@ public class ChecksumCalc {
 	public String stripWhitespaceFromXML (String aMessage) {
 		String tTrimmedMessage;
 		
-		tTrimmedMessage = aMessage.replaceAll ("\r\n", "\n").replaceAll ("    ", "").replace ("\n\n", "\n");
+		tTrimmedMessage = aMessage.replaceAll ("\r\n*", "\n").replaceAll ("    ", "");
 
 		return tTrimmedMessage;
 	}
 	
 	public String MD5 (XMLDocument aXMLDocument) {
-		return MD5 (aXMLDocument.toXMLString ());
+		return MD5 (aXMLDocument.toXMLString (), STRIP_WHITESPACE);
 	}
 	
 	public String MD5 (String aMessage) {
+		return MD5 (aMessage, DONT_STRIP_WHITESPACE);
+	}
+	
+	public String MD5 (String aMessage, boolean aStripWhitespace) {
 		//
 		MessageDigest tMD;
 		StringBuffer tStringBuffer;
@@ -42,7 +49,11 @@ public class ChecksumCalc {
 		byte [] tBytes;
 		
 		try {
-			tTrimmedMessage = aMessage.replaceAll ("\r\n", "\n").replaceAll ("    ", "").replace ("\n\n", "\n");
+			if (aStripWhitespace) {
+				tTrimmedMessage = stripWhitespaceFromXML (aMessage);
+			} else {
+				tTrimmedMessage = aMessage;
+			}
 			tMD = java.security.MessageDigest.getInstance (algorithm);
 			tBytes = tMD.digest (tTrimmedMessage.getBytes ());
 			tStringBuffer = new StringBuffer ();

@@ -297,11 +297,19 @@ public class XMLDocument {
 	}
 	
 	public String MD5 () {
+		String tMD5Sum;
+		
+		tMD5Sum = MD5 (ChecksumCalc.STRIP_WHITESPACE);
+		
+		return tMD5Sum;
+	}
+	
+	public String MD5 (boolean aStripWhitespace) {
 		ChecksumCalc tChecksum;
 		String tMD5Sum;
 		
 		tChecksum = new ChecksumCalc ();
-		tMD5Sum = tChecksum.MD5 (toXMLString ());
+		tMD5Sum = tChecksum.MD5 (toXMLString (), aStripWhitespace);
 		
 		return tMD5Sum;
 	}

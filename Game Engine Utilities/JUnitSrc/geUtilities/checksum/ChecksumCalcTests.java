@@ -25,7 +25,6 @@ class ChecksumCalcTests {
 		
 		tMessage = GUI.NULL_STRING;
 		tChecksum = checksumCalc.MD5 (tMessage);
-//		System.out.println ("Message [" + tMessage + "] Checksum [" + tChecksum + "]");
 		assertEquals (GUI.NULL_STRING, tChecksum);
 
 		tMessage = GUI.EMPTY_STRING;
@@ -46,7 +45,7 @@ class ChecksumCalcTests {
 				"		    </Benefits>\n" + "		<Certificate director=\"YES\" percentage=\"100\"\n" + 
 				"			allowedOwners=\"IPO,Player,Share\" />\n" + 
 				"    </Private>\n";
-		tChecksum = checksumCalc.MD5 (tPrivateCompany1TestXML);
+		tChecksum = checksumCalc.MD5 (tPrivateCompany1TestXML, ChecksumCalc.STRIP_WHITESPACE);
 		assertEquals ("d3d2b5b7a09f3b544e8c9dcf3daeaf91", tChecksum);
 
 		String tGameInfoMacXML = "<GameInfo gameID=\"2024-08-20-1506\" name=\"1830\">\n" + 
@@ -57,7 +56,7 @@ class ChecksumCalcTests {
 				"        <VariantEffect action=\"Set Diesel Train Quantity to 6 (Standard)\" class=\"ge18xx.game.variants.SetTrainCountVEffect\" defaultEffect=\"true\" hide=\"false\" id=\"202\" name=\"Standard\" quantity=\"6\" state=\"false\" trainName=\"Diesel\"/>\n" + 
 				"    </VariantEffects>\n" + 
 				"</GameInfo>\n";
-		tChecksum = checksumCalc.MD5 (tGameInfoMacXML);
+		tChecksum = checksumCalc.MD5 (tGameInfoMacXML, ChecksumCalc.STRIP_WHITESPACE);
 		assertEquals ("2de6c1db22bacf3e22dc655cf74d7303", tChecksum);
 
 		String tGameInfoWindowsXML = "<GameInfo gameID=\"2024-08-20-1506\" name=\"1830\">\r\n" + 
@@ -68,9 +67,7 @@ class ChecksumCalcTests {
 				"<VariantEffect action=\"Set Diesel Train Quantity to 6 (Standard)\" class=\"ge18xx.game.variants.SetTrainCountVEffect\" defaultEffect=\"true\" hide=\"false\" id=\"202\" name=\"Standard\" quantity=\"6\" state=\"false\" trainName=\"Diesel\"/>\r\n" + 
 				"</VariantEffects>\r\n" + 
 				"</GameInfo>\r\n\n";
-		tChecksum = checksumCalc.MD5 (tGameInfoWindowsXML);
+		tChecksum = checksumCalc.MD5 (tGameInfoWindowsXML, ChecksumCalc.STRIP_WHITESPACE);
 		assertEquals ("2de6c1db22bacf3e22dc655cf74d7303", tChecksum);
-
 	}
-
 }
