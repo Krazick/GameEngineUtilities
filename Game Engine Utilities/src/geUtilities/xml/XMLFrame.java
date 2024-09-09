@@ -128,7 +128,6 @@ public class XMLFrame extends JFrame {
 		}
 
 		return tXMLFileWasLoaded;
-
 	}
 	
 	public boolean loadXML (String aXMLFileName, LoadableXMLI aLoadableObject) throws IOException {
