@@ -23,14 +23,12 @@ public class Checksum implements XMLSaveGameI {
 	String [] checksums;
 	int actionIndex;
 	
-	// TODO -- Change the 'actionNumber' to 'actionIndex' to point into the ActionManager Actions for the one shown.
-	
-	public Checksum (String aGameID, String aNodeName, String aClientName, int aPlayerCount, int aActionNumber) {
+	public Checksum (String aGameID, String aNodeName, String aClientName, int aPlayerCount, int aActionIndex) {
 		setGameID (aGameID);
 		setNodeName (aNodeName);
 		setClientName (aClientName);
 		checksums = new String [aPlayerCount];
-		setActionNumber (aActionNumber);
+		setActionIndex (aActionIndex);
 	}
 	
 	private void setClientName (String aClientName) {
@@ -45,8 +43,8 @@ public class Checksum implements XMLSaveGameI {
 		nodeName = aNodeName;
 	}
 	
-	private void setActionNumber (int aActionNumber) {
-		actionIndex = aActionNumber;
+	private void setActionIndex (int aActionIndex) {
+		actionIndex = aActionIndex;
 	}
 
 	public String getClientName () {
