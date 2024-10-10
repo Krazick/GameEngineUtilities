@@ -11,6 +11,7 @@ public class Checksum implements XMLSaveGameI {
 	public static final AttributeName AN_GAME_ID = new AttributeName ("gameID");
 	public static final AttributeName AN_NODE_NAME = new AttributeName ("nodeName");
 	public static final AttributeName AN_ACTION_INDEX = new AttributeName ("actionIndex");
+	public static final AttributeName AN_ACTION_NUMBER = new AttributeName ("actionNumber");
 	public static final AttributeName AN_CLIENT_NAME = new AttributeName ("clientName");
 	public static final AttributeName AN_CHECKSUM = new AttributeName ("checksum");
 	public static final AttributeName AN_PLAYER_INDEX = new AttributeName ("playerIndex");
@@ -22,13 +23,15 @@ public class Checksum implements XMLSaveGameI {
 	String nodeName;
 	String [] checksums;
 	int actionIndex;
+	int actionNumber;
 	
-	public Checksum (String aGameID, String aNodeName, String aClientName, int aPlayerCount, int aActionIndex) {
+	public Checksum (String aGameID, String aNodeName, String aClientName, int aPlayerCount, int aActionIndex, int aActionNumber) {
 		setGameID (aGameID);
 		setNodeName (aNodeName);
 		setClientName (aClientName);
 		checksums = new String [aPlayerCount];
 		setActionIndex (aActionIndex);
+		setActionNumber (aActionNumber);
 	}
 	
 	private void setClientName (String aClientName) {
@@ -46,6 +49,10 @@ public class Checksum implements XMLSaveGameI {
 	private void setActionIndex (int aActionIndex) {
 		actionIndex = aActionIndex;
 	}
+	
+	private void setActionNumber (int aActionNumber) {
+		actionNumber = aActionNumber;
+	}
 
 	public String getClientName () {
 		return clientName;
@@ -61,6 +68,10 @@ public class Checksum implements XMLSaveGameI {
 	
 	public int getActionIndex () {
 		return actionIndex;
+	}
+	
+	public int getActionNumber () {
+		return actionNumber;
 	}
 	
 	public void addClientChecksum (int aPlayerIndex, String aChecksum) {
@@ -126,6 +137,7 @@ public class Checksum implements XMLSaveGameI {
 		tXMLElement.setAttribute (AN_NODE_NAME, nodeName);
 		tXMLElement.setAttribute (AN_CLIENT_NAME, clientName);
 		tXMLElement.setAttribute (AN_ACTION_INDEX, actionIndex);
+		tXMLElement.setAttribute (AN_ACTION_NUMBER, actionNumber);
 		
 		for (int tPlayerIndex = 0; tPlayerIndex < checksums.length; tPlayerIndex++) {
 			if (checksums [tPlayerIndex] != GUI.NULL_STRING) {
