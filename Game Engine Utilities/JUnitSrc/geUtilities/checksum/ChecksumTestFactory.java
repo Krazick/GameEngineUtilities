@@ -12,19 +12,19 @@ public class ChecksumTestFactory {
 		gameID = aGameID;
 	}
 
-	public Checksum buildChecksum (int aActionNumber) {
+	public Checksum buildChecksum (int aActionIndex, int aActionNumber) {
 		Checksum tChecksum;
 		
-		tChecksum = new Checksum (gameID, "Game", "Buster", 3, aActionNumber);
+		tChecksum = new Checksum (gameID, "Game", "Buster", 3, aActionIndex, aActionNumber);
 		tChecksum.addClientChecksum (0, "fb1ed0c56294da977e869b9e49df239a");
 
 		return tChecksum;
 	}
 	
-	public Checksum buildChecksum (String aNodeName, String aClientName, int aPlayerIndex, int aActionNumber) {
+	public Checksum buildChecksum (String aNodeName, String aClientName, int aPlayerIndex, int aActionIndex, int aActionNumber) {
 		Checksum tChecksum;
 		
-		tChecksum = new Checksum (gameID, aNodeName, aClientName, aPlayerIndex, aActionNumber);
+		tChecksum = new Checksum (gameID, aNodeName, aClientName, aPlayerIndex, aActionIndex, aActionNumber);
 		tChecksum.addClientChecksum (0, "fb1ed0c56294da977e869b9e49df239a");
 
 		return tChecksum;

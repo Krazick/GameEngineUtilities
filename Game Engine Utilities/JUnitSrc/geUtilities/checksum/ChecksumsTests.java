@@ -23,9 +23,9 @@ class ChecksumsTests {
 		
 		checksumTestFactory = new ChecksumTestFactory ("2024-08-14-1600");
 		checksums = checksumTestFactory.buildChecksums ();
-		checksum1 = checksumTestFactory.buildChecksum (1);
-		checksum2 = checksumTestFactory.buildChecksum (2);
-		checksum3 = checksumTestFactory.buildChecksum (3);
+		checksum1 = checksumTestFactory.buildChecksum (1, 101);
+		checksum2 = checksumTestFactory.buildChecksum (1, 102);
+		checksum3 = checksumTestFactory.buildChecksum (1, 103);
 	}
 
 	@Test
@@ -89,7 +89,7 @@ class ChecksumsTests {
 						" Checksum [0] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [1] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [2] fb1ed0c56294da977e869b9e49df239a\n" +
-				"ID: 2024-08-14-1600 Action Index: 2 Node Name: Game Client Name: Buster" +
+				"ID: 2024-08-14-1600 Action Index: 1 Node Name: Game Client Name: Buster" +
 						" Checksum [0] fb1ed0c56294da977e869bxe49df239a\n" +
 						" Checksum [1] NO-CHECKSUM\n" +
 						" Checksum [2] fb1ed0c56294da977e869bxe49df239a\n",
@@ -104,18 +104,18 @@ class ChecksumsTests {
 						" Checksum [0] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [1] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [2] fb1ed0c56294da977e869b9e49df239a\n" +
-				"ID: 2024-08-14-1600 Action Index: 2 Node Name: Game Client Name: Buster" +
+				"ID: 2024-08-14-1600 Action Index: 1 Node Name: Game Client Name: Buster" +
 						" Checksum [0] fb1ed0c56294da977e869bxe49df239a\n" +
 						" Checksum [1] NO-CHECKSUM\n" +
 						" Checksum [2] fb1ed0c56294da977e869bxe49df239a\n" +
-				"ID: 2024-08-14-1600 Action Index: 3 Node Name: Game Client Name: Buster" +
+				"ID: 2024-08-14-1600 Action Index: 1 Node Name: Game Client Name: Buster" +
 						" Checksum [0] fb1ed0c56294da977e869b9e49df239a\n" +
 						" Checksum [1] NO-CHECKSUM\n" +
 						" Checksum [2] NO-CHECKSUM\n",
 
 						checksums.getDetailAllChecksums ());
 		
-		assertEquals (1, checksums.findIndexFor (2));
+		assertEquals (2, checksums.findIndexFor (1));
 		assertEquals (Checksums.NOT_FOUND, checksums.findIndexFor (4));
 		
 		checksums.removeActionIndex (4);
