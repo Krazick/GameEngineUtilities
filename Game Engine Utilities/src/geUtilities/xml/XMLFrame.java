@@ -167,7 +167,8 @@ public class XMLFrame extends JFrame {
 
 	public void setDefaults (FrameInfo aFrameInfo) {
 		setDefaults (aFrameInfo.getWidth (), aFrameInfo.getHeight (), aFrameInfo.getXLocation (),
-				aFrameInfo.getYLocation (), aFrameInfo.getVisible (), aFrameInfo.getHexSize (), aFrameInfo.getState ());
+				aFrameInfo.getYLocation (), aFrameInfo.getVisible (), aFrameInfo.getHexSize (),
+				aFrameInfo.getState ());
 	}
 
 	public void setDefaults (XMLNode aXMLMapRoot) {
