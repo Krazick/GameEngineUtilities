@@ -8,6 +8,7 @@ import javax.swing.JButton;
 public class KButton extends JButton implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	static long eventDelay;
+	public static final KButton NO_KBUTTON = null;
 
 	ActionListener userActionListener;
 	long previousTime;
