@@ -29,15 +29,38 @@ class XMLDocumentTests {
 		nullDocument = new XMLDocument (XMLDocument.NO_DOCUMENT);
 	}
 
+	private XMLDocument buildMinorCompanyTestDocument () {
+		XMLDocument tMinorDocument;
+		String tMinorCompany1TestXML = "	<Minor id=\"1701\" name=\"Bergisch-Märkische Bahn\" abbrev=\"1\" "
+				+ "		cost=\"80\"\n"
+				+ "		homeCell1=\"H2\" homeLocation1=\"15\" upgradeID=\"1810\" upgradePercentage=\"5\"\n"
+				+ "		formUpgrade=\"true\" formPhase=\"2.3\"\n"
+				+ "		bgColor=\"Black\" fgColor=\"White\" homeColor=\"Black\" tokens=\"1\">\n"
+				+ "		<Certificate director=\"YES\" percentage=\"50\" allowedOwners=\"IPO,Player\" />\n"
+				+ "		<Certificate director=\"NO\" percentage=\"50\" allowedOwners=\"Minor\" />\n"
+				+ "	</Minor>\n";
+
+		tMinorDocument = utilityTestFactory.buildXMLDocument (tMinorCompany1TestXML);
+
+		return tMinorDocument;
+
+	}
+	
 	private XMLDocument buildPrivateCompanyTestDocument () {
 		XMLDocument tPrivateDocument;
-		String tPrivateCompany1TestXML = "	<Private id=\"802\" name=\"TEST-Champlain &amp; St. Lawrence\" abbrev=\"TEST-C&amp;SL\" cost=\"40\" \n"
+		String tPrivateCompany1TestXML = "	<Private id=\"802\" name=\"TEST-Champlain &amp; St. Lawrence\"  "
+				+ " abbrev=\"TEST-C&amp;SL\" cost=\"40\" \n"
 				+ "		revenue=\"10\" homeCell1=\"B20\" homeLocation1=\"7\" homeLocation2=\"12\" \n"
 				+ "		note=\"A Corporation owning the C&amp;SL may lay a tile onC&amp;SL's hex even if this hex is not connected to the Corporation's Railhead. This free tile placement is in addition to the Corporation's tile placement — For this turn only the Corporation may play two tiles. The tile played on the C&amp;SL hex does not have to connect to any existing adjacent track.\"\n"
-				+ "		special=\"Free Tile Placement\">\n" + "		<Benefits>\n"
-				+ "			<Benefit actorType=\"Share Company\" class=\"ge18xx.company.benefit.TilePlacementBenefit\" extra=\"true\" mapCell=\"B20\" cost=\"0\" passive=\"false\"/>\n"
-				+ "		</Benefits>\n" + "		<Certificate director=\"YES\" percentage=\"100\"\n"
-				+ "			allowedOwners=\"IPO,Player,Share\" />\n" + "	</Private>\n" + "";
+				+ "		special=\"Free Tile Placement\">\n" 
+				+ "		<Benefits>\n"
+				+ "			<Benefit actorType=\"Share Company\"  "
+				+ "				class=\"ge18xx.company.benefit.TilePlacementBenefit\" extra=\"true\" "
+				+ "				mapCell=\"B20\" cost=\"0\" passive=\"false\" />\n"
+				+ "		</Benefits>\n" 
+				+ "		<Certificate director=\"YES\" percentage=\"100\"\n"
+				+ "			allowedOwners=\"IPO,Player,Share\" />\n" 
+				+ "	</Private>\n" + "";
 
 		tPrivateDocument = utilityTestFactory.buildXMLDocument (tPrivateCompany1TestXML);
 
@@ -123,6 +146,8 @@ class XMLDocumentTests {
 		Document tDocument1;
 		Document tDocument2;
 		Document tDocument3;
+		XMLDocument tMinorDocument;
+		Document tMinorDoc;
 
 		tPrivateDocument = buildPrivateCompanyTestDocument ();
 		tDocument1 = tPrivateDocument.getDocument ();
@@ -133,6 +158,10 @@ class XMLDocumentTests {
 
 		tDocument3 = document.getDocument ();
 		assertNotNull (tDocument3);
+		
+		tMinorDocument = buildMinorCompanyTestDocument ();
+		tMinorDoc = tMinorDocument.getDocument ();
+		assertNotNull (tMinorDoc);
 	}
 
 	@Test

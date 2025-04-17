@@ -17,31 +17,34 @@ class XMLElementTests {
 	ElementName elementName;
 	AttributeName attributeName1;
 	AttributeName attributeName2;
-	
+	AttributeName attributeName3;
+
 	@BeforeEach
 	void setUp () throws Exception {
 		xmlDocument = new XMLDocument ();
 		elementName = new ElementName ("TestElement");
 		attributeName1 = new AttributeName ("testAttributeAlpha");
 		attributeName2 = new AttributeName ("testAttributeBeta");
-		
+		attributeName3 = new AttributeName ("testGermanChar");
+	
 		xmlElement = xmlDocument.createElement (elementName);
 		xmlElement.setAttribute (attributeName1, "value of an");
 		xmlElement.setAttribute (attributeName2, "This is a test");
+		xmlElement.setAttribute (attributeName3, "Bergisch-Märkische Bahn");
 		xmlDocument.appendChild (xmlElement);
 	}
 
 	@Test
 	@DisplayName ("Basic XML Element Tests")
 	void basicXMLElementTests () {
-		assertEquals ("<TestElement testAttributeAlpha=\"value of an\" testAttributeBeta=\"This is a test\"/>\n", 
+		assertEquals ("<TestElement testAttributeAlpha=\"value of an\" testAttributeBeta=\"This is a test\" testGermanChar=\"Bergisch-Märkische Bahn\"/>\n", 
 						xmlDocument.toXMLString ());
 		
-		assertEquals ("<TestElement testAttributeAlpha=\"value of an\" testAttributeBeta=\"This is a test\"/>\n",
+		assertEquals ("<TestElement testAttributeAlpha=\"value of an\" testAttributeBeta=\"This is a test\" testGermanChar=\"Bergisch-Märkische Bahn\"/>\n",
 				xmlElement.toXMLString ());
 		
-		assertEquals ("64430fe783626feea8c5af77650761f1", xmlDocument.MD5 ());
-		assertEquals ("64430fe783626feea8c5af77650761f1", xmlElement.MD5 ());
+		assertEquals ("4314ba516b33c619804d56a98977ca36", xmlDocument.MD5 ());
+		assertEquals ("4314ba516b33c619804d56a98977ca36", xmlElement.MD5 ());
 		
 	}
 }
