@@ -274,20 +274,26 @@ public class XMLDocument {
 
 	public String toXMLString () {
 		String tXMLString = GUI.EMPTY_STRING;
-
+		TransformerFactory tTransformerFactory;
+		Transformer tTransformer;
+		StringWriter tStringWriter;
+		StreamResult tStreamResult;
+		DOMSource tDOMSource;
+		
 		try {
 			// set up a transformer
-			TransformerFactory tTransformerFactory = TransformerFactory.newInstance ();
-			Transformer tTransformer = tTransformerFactory.newTransformer ();
+			tTransformerFactory = TransformerFactory.newInstance ();
+			tTransformer = tTransformerFactory.newTransformer ();
 			tTransformer.setOutputProperty (OutputKeys.OMIT_XML_DECLARATION, "yes");
 			tTransformer.setOutputProperty (OutputKeys.INDENT, "yes");
 
 			// create string from XML tree
-			StringWriter tStringWriter = new StringWriter ();
-			StreamResult tStreamResult = new StreamResult (tStringWriter);
-			DOMSource tDOMSource = getDOMSource ();
+			tStringWriter = new StringWriter ();
+			tStreamResult = new StreamResult (tStringWriter);
+			tDOMSource = getDOMSource ();
 			tTransformer.transform (tDOMSource, tStreamResult);
 			tXMLString = tStringWriter.toString ();
+			tXMLString.replaceAll ("\r\n",  "\n");
 		} catch (Exception tException) {
 			System.err.println (tException);
 			tException.printStackTrace ();
