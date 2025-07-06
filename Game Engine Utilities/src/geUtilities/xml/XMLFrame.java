@@ -18,6 +18,7 @@ import geUtilities.GameFrameConfig;
 
 public class XMLFrame extends JFrame {
 	public static final XMLFrame NO_XML_FRAME = null;
+	public static final String NO_XML_FRAME_NAME = GUI.NULL_STRING;
 
 	public static enum Visibility {
 		ON, OFF, CONFIG_VALUE
