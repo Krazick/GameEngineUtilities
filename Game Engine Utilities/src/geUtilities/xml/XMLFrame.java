@@ -87,6 +87,10 @@ public class XMLFrame extends JFrame {
 		return gameName;
 	}
 
+	public String getPlayerName () {
+		return gameEngineManager.getClientUserName ();
+	}
+
 	public void buildScrollPane (JComponent aImage) {
 		buildScrollPane (aImage, GUI.NULL_STRING);
 	}
