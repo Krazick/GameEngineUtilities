@@ -21,5 +21,8 @@ public abstract class GameEngineManager implements GameManagerI {
 
 	@Override
 	public abstract GameFrameConfig getGameFrameConfig ();
+	
+	@Override
+	public abstract String getClientUserName ();
 
 }
