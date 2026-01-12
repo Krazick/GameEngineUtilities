@@ -38,7 +38,7 @@ public class XMLElement {
 	}
 
 	public void appendChild (XMLElement aXMLElement, String aLabel) {
-		appendChild (aXMLElement, ADD_CHECKSUM, NO_LABEL);
+		appendChild (aXMLElement, ADD_CHECKSUM, aLabel);
 	}
 
 	public void appendChild (XMLElement aXMLElement, boolean aAddChecksum) {
