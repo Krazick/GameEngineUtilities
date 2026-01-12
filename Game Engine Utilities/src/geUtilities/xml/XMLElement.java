@@ -18,6 +18,8 @@ import geUtilities.GUI;
 public class XMLElement {
 	public static XMLElement NO_XML_ELEMENT = null;
 	public static Element NO_ELEMENT = null;
+	public static String NO_LABEL = GUI.NULL_STRING;
+	public static boolean ADD_CHECKSUM = true;
 	Element element;
 
 	public XMLElement (Element aElement) {
@@ -32,8 +34,34 @@ public class XMLElement {
 	}
 
 	public void appendChild (XMLElement aXMLElement) {
+		appendChild (aXMLElement, ADD_CHECKSUM, NO_LABEL);
+	}
+
+	public void appendChild (XMLElement aXMLElement, String aLabel) {
+		appendChild (aXMLElement, ADD_CHECKSUM, NO_LABEL);
+	}
+
+	public void appendChild (XMLElement aXMLElement, boolean aAddChecksum) {
+		appendChild (aXMLElement, aAddChecksum, NO_LABEL);
+	}
+
+	public void appendChild (XMLElement aXMLElement, boolean aAddChecksum, String aLabel) {
+		String tXMLElementMD5;
+		Element tElement;
+
 		if (validElement ()) {
-			element.appendChild (aXMLElement.getElement ());
+			tElement = aXMLElement.getElement ();
+			element.appendChild (tElement);
+			if (aAddChecksum) {
+				tXMLElementMD5 = aXMLElement.MD5 ();
+				if (aLabel != NO_LABEL) {
+					System.out.println ("AC-Element " + tElement.getNodeName () + 
+							" MD5 " + tXMLElementMD5 + " Label: " + aLabel);
+				} else {
+					System.out.println ("AC-Element " + tElement.getNodeName () + 
+							" MD5 " + tXMLElementMD5);
+				}
+			}
 		}
 	}
 
