@@ -66,6 +66,7 @@ public class XMLElement {
 		XMLElement tChecksumXMLElement;
 		XMLDocument tXMLDocument;
 		Element tElement;
+//		String tHashKey;
 		
 		tXMLElementMD5 = aXMLElement.MD5 ();
 		tXMLDocument = new XMLDocument (aElement.getOwnerDocument ());
@@ -82,6 +83,10 @@ public class XMLElement {
 //		}
 		tElement = tChecksumXMLElement.getElement ();
 		element.appendChild (tElement);
+//		tHashKey = aElement.getNodeName () + aLabel;
+//		System.out.print ("Key " + tHashKey);
+//		System.out.println ("  Checksum " + tXMLElementMD5);
+//		tXMLDocument.putChecksum (tHashKey, tXMLElementMD5);
 	}
 
 	public void setElement (Element aElement) {
