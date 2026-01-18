@@ -26,7 +26,7 @@ public class XMLDocument {
 	public static final Document NO_DOCUMENT = null;
 	public static final XMLDocument NO_XML_DOCUMENT = null;
 	Document document;
-
+	
 	public XMLDocument (Document aDocument) {
 		document = aDocument;
 	}
@@ -102,7 +102,7 @@ public class XMLDocument {
 			}
 		}
 	}
-
+	
 	public XMLDocument parseXMLString (String aXMLString) {
 		DocumentBuilderFactory tDocBuilderFac;
 		DocumentBuilder tDocBuilder;
