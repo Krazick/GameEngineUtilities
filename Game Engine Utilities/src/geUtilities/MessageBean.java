@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MessageBean {
-	public final static MessageBean NO_BEAN = null;
+	public static final MessageBean NO_BEAN = null;
 	private PropertyChangeSupport support;
 	private String oldMessage;
 	private String propertyName;
