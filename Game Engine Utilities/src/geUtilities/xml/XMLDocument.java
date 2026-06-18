@@ -314,7 +314,7 @@ public class XMLDocument {
 		ChecksumCalc tChecksum;
 		String tMD5Sum;
 		
-		tChecksum = new ChecksumCalc ();
+		tChecksum = new ChecksumCalc ("SHA-256");
 		tMD5Sum = tChecksum.MD5 (toXMLString (), aStripWhitespace);
 		
 		return tMD5Sum;

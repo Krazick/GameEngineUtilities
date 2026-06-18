@@ -43,8 +43,10 @@ class XMLElementTests {
 		assertEquals ("<TestElement testAttributeAlpha=\"value of an\" testAttributeBeta=\"This is a test\" testGermanChar=\"Bergisch-Märkische Bahn\"/>\n",
 				xmlElement.toXMLString ());
 		
-		assertEquals ("4314ba516b33c619804d56a98977ca36", xmlDocument.MD5 ());
-		assertEquals ("4314ba516b33c619804d56a98977ca36", xmlElement.MD5 ());
+//		assertEquals ("4314ba516b33c619804d56a98977ca36", xmlDocument.MD5 ());
+//		assertEquals ("4314ba516b33c619804d56a98977ca36", xmlElement.MD5 ());
+		assertEquals ("d1edeff2656dadca81369b82de99c0b89537676e52db1d4eba77c1f67fefefcc", xmlDocument.MD5 ());
+		assertEquals ("d1edeff2656dadca81369b82de99c0b89537676e52db1d4eba77c1f67fefefcc", xmlElement.MD5 ());
 		
 	}
 }

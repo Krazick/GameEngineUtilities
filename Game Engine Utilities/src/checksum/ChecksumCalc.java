@@ -14,7 +14,7 @@ public class ChecksumCalc {
 	private String algorithm;
 	
 	public ChecksumCalc () {
-		this ("MD5");
+		this ("SHA-256");
 	}
 	
 	public ChecksumCalc (String aAlgorithm) {

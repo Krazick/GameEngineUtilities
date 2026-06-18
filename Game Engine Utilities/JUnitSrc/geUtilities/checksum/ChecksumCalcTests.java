@@ -14,7 +14,7 @@ class ChecksumCalcTests {
 	
 	@BeforeEach
 	void setUp () throws Exception {
-		checksumCalc = new ChecksumCalc ();
+		checksumCalc = new ChecksumCalc ("SHA-256");
 	}
 
 	@Test
@@ -30,11 +30,13 @@ class ChecksumCalcTests {
 
 		tMessage = GUI.EMPTY_STRING;
 		tChecksum = checksumCalc.MD5 (tMessage);
-		assertEquals ("d41d8cd98f00b204e9800998ecf8427e", tChecksum);
+//		assertEquals ("d41d8cd98f00b204e9800998ecf8427e", tChecksum);
+		assertEquals ("e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", tChecksum);
 
 		tMessage = "This is a test of the Checksum Routine";
 		tChecksum = checksumCalc.MD5 (tMessage);
-		assertEquals ("bcd6504ea437f52b01416a81df4e5968", tChecksum);
+//		assertEquals ("bcd6504ea437f52b01416a81df4e5968", tChecksum);
+		assertEquals ("da5c02102f9b0e5f76a066bcecd28e2ddd3e27bdfc36e99a28adf0aba4eaaf22", tChecksum);
 
 		String tPrivateCompany1TestXML = "<Private id=\"802\" name=\"TEST-Champlain &amp; St. Lawrence\" " +
 				"    abbrev=\"TEST-C&amp;SL\" cost=\"40\" \n" + 
@@ -61,7 +63,8 @@ class ChecksumCalcTests {
 				+ "</Private>\n");
 
 		tChecksum = checksumCalc.MD5 (tPrivateCompany1TestXML, ChecksumCalc.STRIP_WHITESPACE);
-		assertEquals ("a2baba26db4a0504cb068dd2500ed5e9", tChecksum);
+//		assertEquals ("a2baba26db4a0504cb068dd2500ed5e9", tChecksum);
+		assertEquals ("b261944f9bb6c8af6f33d0d21e94a12554b16741b80b6a06ce4ac337e4f3ee34", tChecksum);
 
 		String tGameInfoMacXML = "<GameInfo gameID=\"2024-08-20-1506\" name=\"1830\">\n" + 
 				"    <VariantEffects>\n" + 
@@ -82,7 +85,8 @@ class ChecksumCalcTests {
 				+ "</GameInfo>\n");
 		
 		tChecksum = checksumCalc.MD5 (tGameInfoMacXML, ChecksumCalc.STRIP_WHITESPACE);
-		assertEquals ("2de6c1db22bacf3e22dc655cf74d7303", tChecksum);
+//		assertEquals ("2de6c1db22bacf3e22dc655cf74d7303", tChecksum);
+		assertEquals ("aa94f4340567d5261e09572242b7ff7fca2999e7f8de94cee7b95701a9ed0bbb", tChecksum);
 
 		String tGameInfoWindowsXML = "<GameInfo gameID=\"2024-08-20-1506\" name=\"1830\">\r\n" + 
 				"<VariantEffects>\r\n" + 
@@ -93,6 +97,7 @@ class ChecksumCalcTests {
 				"</VariantEffects>\r\n" + 
 				"</GameInfo>\r\n\n";
 		tChecksum = checksumCalc.MD5 (tGameInfoWindowsXML, ChecksumCalc.STRIP_WHITESPACE);
-		assertEquals ("2de6c1db22bacf3e22dc655cf74d7303", tChecksum);
+//		assertEquals ("2de6c1db22bacf3e22dc655cf74d7303", tChecksum);
+		assertEquals ("aa94f4340567d5261e09572242b7ff7fca2999e7f8de94cee7b95701a9ed0bbb", tChecksum);
 	}
 }
