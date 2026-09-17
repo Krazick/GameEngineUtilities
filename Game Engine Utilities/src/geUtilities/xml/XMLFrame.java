@@ -10,6 +10,8 @@ import java.io.IOException;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeListener;
 
 import swingTweaks.KButton;
 import geUtilities.FrameInfo;
@@ -103,6 +105,21 @@ public class XMLFrame extends JFrame {
 		} else {
 			add (scrollPane);
 		}
+	}
+	
+	public JSlider buildScaleSlider (int aSliderOrientation, ChangeListener aSliderListener) {
+		JSlider tScaleSlider;
+		
+		tScaleSlider = new JSlider (aSliderOrientation, 4, 16, 8);
+		tScaleSlider.addChangeListener (aSliderListener);
+
+		// Turn on labels at major tick marks.
+		tScaleSlider.setMajorTickSpacing (4);
+		tScaleSlider.setMinorTickSpacing (1);
+		tScaleSlider.setPaintTicks (true);
+		tScaleSlider.setPaintLabels (true);
+		
+		return tScaleSlider;
 	}
 
 	public String extractFrameName () {
@@ -303,7 +320,7 @@ public class XMLFrame extends JFrame {
 	public void setHexScale (int aScale) {
 		// DO NOTHING by default - If a Specific Frame Type needs to set the Scale, it
 		// will have it's Overriding Function.
-		// Primarily for the MapFrame
+		// For any Frame that draw a Hex (MapFrame, TileTrayFrame)
 	}
 
 	public void toTheFront () {
