@@ -33,7 +33,7 @@ public class XMLFrame extends JFrame {
 	int defaultHeight;
 	int defaultXLocation;
 	int defaultYLocation;
-	int defaultHexSize;
+	int defaultHexScale;
 	int defaultState;
 	String gameName;
 	public JScrollPane scrollPane;
@@ -176,93 +176,6 @@ public class XMLFrame extends JFrame {
 		return tXMLFileWasLoaded;
 	}
 
-	public void setDefaults (int aWidth, int aHeight, int aXLocation, int aYLocation, boolean aVisible, 
-							int aHexSize, int aState) {
-		defaultWidth = aWidth;
-		defaultHeight = aHeight;
-		defaultXLocation = aXLocation;
-		defaultYLocation = aYLocation;
-		defaultVisible = aVisible;
-		defaultHexSize = aHexSize;
-		defaultState = aState;
-	}
-
-	public void setDefaults (FrameInfo aFrameInfo) {
-		setDefaults (aFrameInfo.getWidth (), aFrameInfo.getHeight (), aFrameInfo.getXLocation (),
-				aFrameInfo.getYLocation (), aFrameInfo.getVisible (), aFrameInfo.getHexSize (),
-				aFrameInfo.getState ());
-	}
-
-	public void setDefaults (XMLNode aXMLMapRoot) {
-		FrameInfo tFrameInfo;
-		
-		tFrameInfo = new FrameInfo (aXMLMapRoot);
-		setDefaults (tFrameInfo);
-	}
-
-	public int getDefaultWidth () {
-		return defaultWidth;
-	}
-
-	public int getDefaultHeight () {
-		return defaultHeight;
-	}
-
-	public int getDefaultXLocation () {
-		return defaultXLocation;
-	}
-
-	public int getDefaultYLocation () {
-		return defaultYLocation;
-	}
-
-	public boolean getDefaultVisible () {
-		return defaultVisible;
-	}
-
-	public int getDefaultHexScale () {
-		return defaultHexSize;
-	}
-
-	public int getDefaultState () {
-		return defaultState;
-	}
-	
-	public void setDefaultFrameInfo () {
-		setLocation (defaultXLocation, defaultYLocation);
-		setSize (defaultWidth, defaultHeight);
-		setVisible (defaultVisible);
-		setState (defaultState);
-		if (defaultHexSize > 0) {
-			setHexScale (defaultHexSize);
-		}
-	}
-
-	public XMLElement getXMLFrameElement (XMLDocument aXMLDocument) {
-		FrameInfo tFrameInfo;
-		GameFrameConfig tGameFrameConfig;
-		XMLElement tXMLFrameElement;
-
-		tGameFrameConfig = new GameFrameConfig ("template");
-		tXMLFrameElement = tGameFrameConfig.createXMLFrameElement (aXMLDocument);
-		tFrameInfo = new FrameInfo (this);
-		tFrameInfo.appendXMLFrameAttributes (tXMLFrameElement);
-
-		return tXMLFrameElement;
-	}
-
-	public static String getVisibileConfig () {
-		return Visibility.CONFIG_VALUE.toString ();
-	}
-
-	public static String getVisibileOFF () {
-		return Visibility.OFF.toString ();
-	}
-
-	public static String getVisibileON () {
-		return Visibility.ON.toString ();
-	}
-
 	public void setFrameToConfigDetails (GameEngineManager aGameManager) {
 		setFrameToConfigDetails (aGameManager, getVisibileOFF ());
 	}
@@ -281,8 +194,9 @@ public class XMLFrame extends JFrame {
 	}
 
 	public void setFrameToConfigDetails (GameFrameConfig aGameFrameConfig, String aVisibility) {
-		String tGameName = getGameName ();
+		String tGameName;
 
+		tGameName = getGameName ();
 		if (aGameFrameConfig == GameFrameConfig.NO_GAME_FRAME) {
 			System.err.println ("No Configuration Data for " + tGameName);
 		} else {
@@ -311,6 +225,93 @@ public class XMLFrame extends JFrame {
 			setVisible (false);
 		}
 		setFrameNormal ();
+	}
+
+	public void setDefaults (XMLNode aXMLMapRoot) {
+		FrameInfo tFrameInfo;
+		
+		tFrameInfo = new FrameInfo (aXMLMapRoot);
+		setDefaults (tFrameInfo);
+	}
+
+	public void setDefaults (FrameInfo aFrameInfo) {
+		setDefaults (aFrameInfo.getWidth (), aFrameInfo.getHeight (), aFrameInfo.getXLocation (),
+				aFrameInfo.getYLocation (), aFrameInfo.getVisible (), aFrameInfo.getHexScale (),
+				aFrameInfo.getState ());
+	}
+
+	public void setDefaults (int aWidth, int aHeight, int aXLocation, int aYLocation, boolean aVisible, 
+							int aHexScale, int aState) {
+		defaultWidth = aWidth;
+		defaultHeight = aHeight;
+		defaultXLocation = aXLocation;
+		defaultYLocation = aYLocation;
+		defaultVisible = aVisible;
+		defaultHexScale = aHexScale;
+		defaultState = aState;
+	}
+
+	public int getDefaultWidth () {
+		return defaultWidth;
+	}
+
+	public int getDefaultHeight () {
+		return defaultHeight;
+	}
+
+	public int getDefaultXLocation () {
+		return defaultXLocation;
+	}
+
+	public int getDefaultYLocation () {
+		return defaultYLocation;
+	}
+
+	public boolean getDefaultVisible () {
+		return defaultVisible;
+	}
+
+	public int getDefaultHexScale () {
+		return defaultHexScale;
+	}
+
+	public int getDefaultState () {
+		return defaultState;
+	}
+	
+	public void setDefaultFrameInfo () {
+		setLocation (defaultXLocation, defaultYLocation);
+		setSize (defaultWidth, defaultHeight);
+		setVisible (defaultVisible);
+		setState (defaultState);
+		if (defaultHexScale > 0) {
+			setHexScale (defaultHexScale);
+		}
+	}
+
+	public XMLElement getXMLFrameElement (XMLDocument aXMLDocument) {
+		FrameInfo tFrameInfo;
+		GameFrameConfig tGameFrameConfig;
+		XMLElement tXMLFrameElement;
+
+		tGameFrameConfig = new GameFrameConfig ("template");
+		tXMLFrameElement = tGameFrameConfig.createXMLFrameElement (aXMLDocument);
+		tFrameInfo = new FrameInfo (this);
+		tFrameInfo.appendXMLFrameAttributes (tXMLFrameElement);
+
+		return tXMLFrameElement;
+	}
+
+	public static String getVisibileConfig () {
+		return Visibility.CONFIG_VALUE.toString ();
+	}
+
+	public static String getVisibileOFF () {
+		return Visibility.OFF.toString ();
+	}
+
+	public static String getVisibileON () {
+		return Visibility.ON.toString ();
 	}
 
 	public int getHexScale () {
