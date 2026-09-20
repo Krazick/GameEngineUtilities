@@ -214,6 +214,12 @@ public class XMLFrame extends JFrame {
 			setDefaults (tFrameInfo);
 			setDefaultFrameInfo ();
 		}
+		
+		// If there is a Default Hex Scale for this Frame, set it.
+		if (defaultHexScale > 0) {
+			setHexScale (defaultHexScale);
+		}
+		
 		// If the Visibility Flag passed in is
 		// ON- always set it Visible,
 		// OFF - always set it to Invisible
@@ -322,6 +328,7 @@ public class XMLFrame extends JFrame {
 		// DO NOTHING by default - If a Specific Frame Type needs to set the Scale, it
 		// will have it's Overriding Function.
 		// For any Frame that draw a Hex (MapFrame, TileTrayFrame)
+		System.out.println ("Ready to setHexScale -- BUT THIS SHOULD NOT BE CALLED");
 	}
 
 	public void toTheFront () {
