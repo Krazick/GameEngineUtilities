@@ -5,6 +5,8 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.TexturePaint;
 import java.awt.image.BufferedImage;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 //
 //  XMLNode.java
@@ -241,6 +243,88 @@ public class XMLNode {
 		}
 		
 		return tLongValue;
+	}
+
+	public Duration getThisDurationAttribute (AttributeName aAttributeName) {
+		Duration tAttributeValue;
+		String tAttributeName;
+
+		tAttributeValue = Duration.ZERO;
+		if (aAttributeName.hasValue ()) {
+			tAttributeName = aAttributeName.getString ();
+			tAttributeValue = getThisDurationAttribute (tAttributeName, tAttributeValue);
+		}
+
+		return tAttributeValue;
+	}
+
+	public Duration getThisDurationAttribute (AttributeName aAttributeName, Duration aDefaultValue) {
+		Duration tAttributeValue;
+		String tAttributeName;
+
+		tAttributeValue = Duration.ZERO;
+		if (aAttributeName.hasValue ()) {
+			tAttributeName = aAttributeName.getString ();
+			tAttributeValue = getThisDurationAttribute (tAttributeName, aDefaultValue);
+		}
+
+		return tAttributeValue;
+	}
+
+	/* PRIVATE */
+	private Duration getThisDurationAttribute (String aAttributeName, Duration aDefaultValue) {
+		String tValue;
+		Duration tDurationValue;
+		
+		tValue = getThisAttribute (aAttributeName);
+		if (tValue == NO_VALUE) {
+			tDurationValue = aDefaultValue;
+		} else {
+			tDurationValue = Duration.parse (tValue);
+		}
+		
+		return tDurationValue;
+	}
+
+	public LocalDateTime getThisLocalDateTimeAttribute (AttributeName aAttributeName) {
+		LocalDateTime tAttributeValue;
+		String tAttributeName;
+
+		tAttributeValue = LocalDateTime.now ();
+		if (aAttributeName.hasValue ()) {
+			tAttributeName = aAttributeName.getString ();
+			tAttributeValue = getThisLocalDateTimeAttribute (tAttributeName, tAttributeValue);
+		}
+
+		return tAttributeValue;
+	}
+
+	public LocalDateTime getThisLocalDateTimeAttribute (AttributeName aAttributeName, LocalDateTime aDefaultValue) {
+		LocalDateTime tAttributeValue;
+		String tAttributeName;
+
+		tAttributeValue = LocalDateTime.now ();
+		if (aAttributeName.hasValue ()) {
+			tAttributeName = aAttributeName.getString ();
+			tAttributeValue = getThisLocalDateTimeAttribute (tAttributeName, aDefaultValue);
+		}
+
+		return tAttributeValue;
+	}
+
+	/* PRIVATE */
+	private LocalDateTime getThisLocalDateTimeAttribute (String aAttributeName, LocalDateTime aDefaultValue) {
+		String tValue;
+		LocalDateTime tLocalDateTimeValue;
+		
+		tValue = getThisAttribute (aAttributeName);
+		if (tValue == NO_VALUE) {
+			tLocalDateTimeValue = aDefaultValue;
+		} else {
+			tLocalDateTimeValue = LocalDateTime.parse (tValue);
+		}
+		
+		return tLocalDateTimeValue;
 	}
 
 	public Color getThisColorAttribute (AttributeName aAttributeName) {
