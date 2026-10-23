@@ -16,8 +16,14 @@ import checksum.ChecksumCalc;
 import geUtilities.GUI;
 
 public class XMLElement {
+	public static final ElementName EN_CHECKSUM_XMLELEMENT = new ElementName ("ChecksumXMLElement");
+	public static final AttributeName AN_NODE_NAME = new AttributeName ("nodeName");
+	public static final AttributeName AN_LABEL = new AttributeName ("label");
+	public static final AttributeName AN_CHECKSUM = new AttributeName ("checksum");
 	public static XMLElement NO_XML_ELEMENT = null;
 	public static Element NO_ELEMENT = null;
+	public static String NO_LABEL = GUI.NULL_STRING;
+	public static boolean ADD_CHECKSUM = true;
 	Element element;
 
 	public XMLElement (Element aElement) {
@@ -30,11 +36,57 @@ public class XMLElement {
 		tElement = (Element) aNode;
 		setElement (tElement);
 	}
-
+	
 	public void appendChild (XMLElement aXMLElement) {
+		appendChild (aXMLElement, ADD_CHECKSUM, NO_LABEL);
+	}
+
+	public void appendChild (XMLElement aXMLElement, String aLabel) {
+		appendChild (aXMLElement, ADD_CHECKSUM, aLabel);
+	}
+
+	public void appendChild (XMLElement aXMLElement, boolean aAddChecksum) {
+		appendChild (aXMLElement, aAddChecksum, NO_LABEL);
+	}
+
+	public void appendChild (XMLElement aXMLElement, boolean aAddChecksum, String aLabel) {
+		Element tElement;
+
 		if (validElement ()) {
-			element.appendChild (aXMLElement.getElement ());
+			tElement = aXMLElement.getElement ();
+			element.appendChild (tElement);
+			if (aAddChecksum) {
+				appendChecksumElement (aXMLElement, aLabel, tElement);
+			}
 		}
+	}
+
+	public void appendChecksumElement (XMLElement aXMLElement, String aLabel, Element aElement) {
+		String tXMLElementMD5;
+		XMLElement tChecksumXMLElement;
+		XMLDocument tXMLDocument;
+		Element tElement;
+//		String tHashKey;
+		
+		tXMLElementMD5 = aXMLElement.MD5 ();
+		tXMLDocument = new XMLDocument (aElement.getOwnerDocument ());
+		tChecksumXMLElement = tXMLDocument.createElement (EN_CHECKSUM_XMLELEMENT);
+		tChecksumXMLElement.setAttribute (AN_NODE_NAME, aElement.getNodeName ()); 
+		tChecksumXMLElement.setAttribute (AN_LABEL, aLabel);
+		tChecksumXMLElement.setAttribute (AN_CHECKSUM, tXMLElementMD5);
+//		if (aLabel != NO_LABEL) {
+//			System.out.println ("AC-Element " + aElement.getNodeName () + 
+//					" MD5 " + tXMLElementMD5 + " Label: " + aLabel);
+//		} else {
+//			System.out.println ("AC-Element " + aElement.getNodeName () + 
+//					" MD5 " + tXMLElementMD5);
+//		}
+		tElement = tChecksumXMLElement.getElement ();
+		element.appendChild (tElement);
+//		tHashKey = aElement.getNodeName () + aLabel;
+//		System.out.print ("Key " + tHashKey);
+//		System.out.println ("  Checksum " + tXMLElementMD5);
+//		tXMLDocument.putChecksum (tHashKey, tXMLElementMD5);
 	}
 
 	public void setElement (Element aElement) {

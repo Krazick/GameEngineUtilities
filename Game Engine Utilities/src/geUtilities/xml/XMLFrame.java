@@ -10,6 +10,8 @@ import java.io.IOException;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeListener;
 
 import swingTweaks.KButton;
 import geUtilities.FrameInfo;
@@ -18,6 +20,7 @@ import geUtilities.GameFrameConfig;
 
 public class XMLFrame extends JFrame {
 	public static final XMLFrame NO_XML_FRAME = null;
+	public static final String NO_XML_FRAME_NAME = GUI.NULL_STRING;
 
 	public static enum Visibility {
 		ON, OFF, CONFIG_VALUE
@@ -30,7 +33,7 @@ public class XMLFrame extends JFrame {
 	int defaultHeight;
 	int defaultXLocation;
 	int defaultYLocation;
-	int defaultHexSize;
+	int defaultHexScale;
 	int defaultState;
 	String gameName;
 	public JScrollPane scrollPane;
@@ -66,6 +69,10 @@ public class XMLFrame extends JFrame {
 		return gameEngineManager;
 	}
 	
+	public String getPlayerName () {
+		return gameEngineManager.getClientUserName ();
+	}
+	
 	protected void updateFrameTitle (String aBaseTitle) {
 		String tFrameTitle;
 
@@ -98,6 +105,21 @@ public class XMLFrame extends JFrame {
 		} else {
 			add (scrollPane);
 		}
+	}
+	
+	public JSlider buildScaleSlider (int aSliderOrientation, ChangeListener aSliderListener) {
+		JSlider tScaleSlider;
+		
+		tScaleSlider = new JSlider (aSliderOrientation, 4, 16, 8);
+		tScaleSlider.addChangeListener (aSliderListener);
+
+		// Turn on labels at major tick marks.
+		tScaleSlider.setMajorTickSpacing (4);
+		tScaleSlider.setMinorTickSpacing (1);
+		tScaleSlider.setPaintTicks (true);
+		tScaleSlider.setPaintLabels (true);
+		
+		return tScaleSlider;
 	}
 
 	public String extractFrameName () {
@@ -154,20 +176,61 @@ public class XMLFrame extends JFrame {
 		return tXMLFileWasLoaded;
 	}
 
-	public void setDefaults (int aWidth, int aHeight, int aXLocation, int aYLocation, boolean aVisible, 
-							int aHexSize, int aState) {
-		defaultWidth = aWidth;
-		defaultHeight = aHeight;
-		defaultXLocation = aXLocation;
-		defaultYLocation = aYLocation;
-		defaultVisible = aVisible;
-		defaultHexSize = aHexSize;
-		defaultState = aState;
+	public void setFrameToConfigDetails (GameEngineManager aGameManager) {
+		setFrameToConfigDetails (aGameManager, getVisibileOFF ());
 	}
 
-	public void setDefaults (FrameInfo aFrameInfo) {
-		setDefaults (aFrameInfo.getWidth (), aFrameInfo.getHeight (), aFrameInfo.getXLocation (),
-				aFrameInfo.getYLocation (), aFrameInfo.getVisible (), aFrameInfo.getHexSize (), aFrameInfo.getState ());
+	public void setFrameToConfigDetails (GameEngineManager aGameManager, String aVisibility) {
+		GameFrameConfig tGameFrameConfig;
+
+		tGameFrameConfig = aGameManager.getGameFrameConfig ();
+		if (tGameFrameConfig != GameFrameConfig.NO_GAME_FRAME) {
+			setFrameToConfigDetails (tGameFrameConfig, aVisibility);
+		}
+	}
+
+	public void setFrameToConfigDetails (GameFrameConfig aGameFrameConfig) {
+		setFrameToConfigDetails (aGameFrameConfig, getVisibileConfig ());
+	}
+
+	public void setFrameToConfigDetails (GameFrameConfig aGameFrameConfig, String aVisibility) {
+		String tGameName;
+
+		tGameName = getGameName ();
+		if (aGameFrameConfig == GameFrameConfig.NO_GAME_FRAME) {
+			System.err.println ("No Configuration Data for " + tGameName);
+		} else {
+			setFrameToConfigDefaults (aGameFrameConfig, aVisibility);
+		}
+	}
+
+	public void setFrameToConfigDefaults (GameFrameConfig aGameFrameConfig, String aVisibility) {
+		String tFrameName;
+		FrameInfo tFrameInfo;
+
+		tFrameName = getTitle ();
+		tFrameInfo = aGameFrameConfig.getFrameInfoFor (tFrameName);
+		if (tFrameInfo != FrameInfo.NO_FRAME_INFO) {
+			setDefaults (tFrameInfo);
+			setDefaultFrameInfo ();
+		}
+		
+		// If there is a Default Hex Scale for this Frame, set it.
+		if (defaultHexScale > 0) {
+			setHexScale (defaultHexScale);
+		}
+		
+		// If the Visibility Flag passed in is
+		// ON- always set it Visible,
+		// OFF - always set it to Invisible
+		// Otherwise, the Default Frame setting will be used from the Game, or the
+		// User's Config File
+		if (aVisibility.equals (Visibility.ON.toString ())) {
+			setVisible (true);
+		} else if (aVisibility.equals (Visibility.OFF.toString ())) {
+			setVisible (false);
+		}
+		setFrameNormal ();
 	}
 
 	public void setDefaults (XMLNode aXMLMapRoot) {
@@ -175,6 +238,23 @@ public class XMLFrame extends JFrame {
 		
 		tFrameInfo = new FrameInfo (aXMLMapRoot);
 		setDefaults (tFrameInfo);
+	}
+
+	public void setDefaults (FrameInfo aFrameInfo) {
+		setDefaults (aFrameInfo.getWidth (), aFrameInfo.getHeight (), aFrameInfo.getXLocation (),
+				aFrameInfo.getYLocation (), aFrameInfo.getVisible (), aFrameInfo.getHexScale (),
+				aFrameInfo.getState ());
+	}
+
+	public void setDefaults (int aWidth, int aHeight, int aXLocation, int aYLocation, boolean aVisible, 
+							int aHexScale, int aState) {
+		defaultWidth = aWidth;
+		defaultHeight = aHeight;
+		defaultXLocation = aXLocation;
+		defaultYLocation = aYLocation;
+		defaultVisible = aVisible;
+		defaultHexScale = aHexScale;
+		defaultState = aState;
 	}
 
 	public int getDefaultWidth () {
@@ -198,7 +278,7 @@ public class XMLFrame extends JFrame {
 	}
 
 	public int getDefaultHexScale () {
-		return defaultHexSize;
+		return defaultHexScale;
 	}
 
 	public int getDefaultState () {
@@ -210,8 +290,8 @@ public class XMLFrame extends JFrame {
 		setSize (defaultWidth, defaultHeight);
 		setVisible (defaultVisible);
 		setState (defaultState);
-		if (defaultHexSize > 0) {
-			setHexScale (defaultHexSize);
+		if (defaultHexScale > 0) {
+			setHexScale (defaultHexScale);
 		}
 	}
 
@@ -240,56 +320,6 @@ public class XMLFrame extends JFrame {
 		return Visibility.ON.toString ();
 	}
 
-	public void setFrameToConfigDetails (GameEngineManager aGameManager) {
-		setFrameToConfigDetails (aGameManager, getVisibileOFF ());
-	}
-
-	public void setFrameToConfigDetails (GameEngineManager aGameManager, String aVisibility) {
-		GameFrameConfig tGameFrameConfig;
-
-		tGameFrameConfig = aGameManager.getGameFrameConfig ();
-		if (tGameFrameConfig != GameFrameConfig.NO_GAME_FRAME) {
-			setFrameToConfigDetails (tGameFrameConfig, aVisibility);
-		}
-	}
-
-	public void setFrameToConfigDetails (GameFrameConfig aGameFrameConfig) {
-		setFrameToConfigDetails (aGameFrameConfig, getVisibileConfig ());
-	}
-
-	public void setFrameToConfigDetails (GameFrameConfig aGameFrameConfig, String aVisibility) {
-		String tGameName = getGameName ();
-
-		if (aGameFrameConfig == GameFrameConfig.NO_GAME_FRAME) {
-			System.err.println ("No Configuration Data for " + tGameName);
-		} else {
-			setFrameToConfigDefaults (aGameFrameConfig, aVisibility);
-		}
-	}
-
-	public void setFrameToConfigDefaults (GameFrameConfig aGameFrameConfig, String aVisibility) {
-		String tFrameName;
-		FrameInfo tFrameInfo;
-
-		tFrameName = getTitle ();
-		tFrameInfo = aGameFrameConfig.getFrameInfoFor (tFrameName);
-		if (tFrameInfo != FrameInfo.NO_FRAME_INFO) {
-			setDefaults (tFrameInfo);
-			setDefaultFrameInfo ();
-		}
-		// If the Visibility Flag passed in is
-		// ON- always set it Visible,
-		// OFF - always set it to Invisible
-		// Otherwise, the Default Frame setting will be used from the Game, or the
-		// User's Config File
-		if (aVisibility.equals (Visibility.ON.toString ())) {
-			setVisible (true);
-		} else if (aVisibility.equals (Visibility.OFF.toString ())) {
-			setVisible (false);
-		}
-		setFrameNormal ();
-	}
-
 	public int getHexScale () {
 		return 0;
 	}
@@ -297,7 +327,8 @@ public class XMLFrame extends JFrame {
 	public void setHexScale (int aScale) {
 		// DO NOTHING by default - If a Specific Frame Type needs to set the Scale, it
 		// will have it's Overriding Function.
-		// Primarily for the MapFrame
+		// For any Frame that draw a Hex (MapFrame, TileTrayFrame)
+		System.out.println ("Ready to setHexScale -- BUT THIS SHOULD NOT BE CALLED");
 	}
 
 	public void toTheFront () {

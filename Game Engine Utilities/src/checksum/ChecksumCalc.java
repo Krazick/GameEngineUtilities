@@ -28,7 +28,7 @@ public class ChecksumCalc {
 	public String stripWhitespaceFromXML (String aMessage) {
 		String tTrimmedMessage;
 		
-		tTrimmedMessage = aMessage.replaceAll ("\r\n*", "\n").replaceAll ("    ", "");
+		tTrimmedMessage = aMessage.replaceAll ("\r\n*", "\n").replaceAll ("[\t\f]*", "").replaceAll ("    ", "");
 
 		return tTrimmedMessage;
 	}

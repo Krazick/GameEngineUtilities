@@ -20,7 +20,7 @@ public class FrameInfo {
 	int width;
 	int xLocation;
 	int yLocation;
-	int hexSize;
+	int hexScale;
 	int state;
 	boolean visible;
 	String name;
@@ -33,7 +33,7 @@ public class FrameInfo {
 		xLocation = aXMLFrame.getLocation ().x;
 		yLocation = aXMLFrame.getLocation ().y;
 		visible = aXMLFrame.isVisible ();
-		hexSize = aXMLFrame.getHexScale ();
+		hexScale = aXMLFrame.getHexScale ();
 		state = aXMLFrame.getState ();
 
 		tFrameName = aXMLFrame.extractFrameName ();
@@ -62,8 +62,8 @@ public class FrameInfo {
 		aXMLFrameElement.setAttribute (AN_YLOCATION, yLocation);
 		aXMLFrameElement.setAttribute (AN_VISIBLE, visible);
 		aXMLFrameElement.setAttribute (AN_STATE, state);
-		if (hexSize > 0) {
-			aXMLFrameElement.setAttribute (AN_HEX_SCALE, hexSize);
+		if (hexScale > 0) {
+			aXMLFrameElement.setAttribute (AN_HEX_SCALE, hexScale);
 		}
 
 		return aXMLFrameElement;
@@ -77,7 +77,7 @@ public class FrameInfo {
 		visible = aFrameInfoNode.getThisBooleanAttribute (AN_VISIBLE);
 		state = aFrameInfoNode.getThisIntAttribute (AN_STATE);
 		name = aFrameInfoNode.getThisAttribute (AN_NAME);
-		hexSize = aFrameInfoNode.getThisIntAttribute (AN_HEX_SCALE);
+		hexScale = aFrameInfoNode.getThisIntAttribute (AN_HEX_SCALE);
 	}
 
 	@Override
@@ -91,7 +91,8 @@ public class FrameInfo {
 		tFrameInfo += "Y-Location: " + yLocation + "\n";
 		tFrameInfo += "Visible: " + visible + "\n";
 		tFrameInfo += "State: " + state + "\n";
-
+		tFrameInfo += "Hex Scale: " + hexScale + "\n";
+		
 		return tFrameInfo;
 	}
 
@@ -104,11 +105,11 @@ public class FrameInfo {
 	}
 
 	public String getHeightString () {
-		return height + "";
+		return height + GUI.EMPTY_STRING;
 	}
 
 	public String getWidthString () {
-		return width + "";
+		return width + GUI.EMPTY_STRING;
 	}
 
 	public int getXLocation () {
@@ -116,7 +117,7 @@ public class FrameInfo {
 	}
 
 	public String getX () {
-		return xLocation + "";
+		return xLocation + GUI.EMPTY_STRING;
 	}
 
 	public int getYLocation () {
@@ -124,7 +125,7 @@ public class FrameInfo {
 	}
 
 	public String getY () {
-		return yLocation + "";
+		return yLocation + GUI.EMPTY_STRING;
 	}
 
 	public boolean getVisible () {
@@ -139,7 +140,7 @@ public class FrameInfo {
 		return name;
 	}
 
-	public int getHexSize () {
-		return hexSize;
+	public int getHexScale () {
+		return hexScale;
 	}
 }

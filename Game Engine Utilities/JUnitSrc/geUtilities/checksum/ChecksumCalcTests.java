@@ -14,7 +14,7 @@ class ChecksumCalcTests {
 	
 	@BeforeEach
 	void setUp () throws Exception {
-		checksumCalc = new ChecksumCalc ();
+		checksumCalc = new ChecksumCalc ("MD5");
 	}
 
 	@Test
@@ -22,6 +22,7 @@ class ChecksumCalcTests {
 	void checksumTests () {
 		String tMessage;
 		String tChecksum;
+		String tTrimmedMessage;
 		
 		tMessage = GUI.NULL_STRING;
 		tChecksum = checksumCalc.MD5 (tMessage);
@@ -30,10 +31,12 @@ class ChecksumCalcTests {
 		tMessage = GUI.EMPTY_STRING;
 		tChecksum = checksumCalc.MD5 (tMessage);
 		assertEquals ("d41d8cd98f00b204e9800998ecf8427e", tChecksum);
+//		assertEquals ("e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", tChecksum);
 
 		tMessage = "This is a test of the Checksum Routine";
 		tChecksum = checksumCalc.MD5 (tMessage);
 		assertEquals ("bcd6504ea437f52b01416a81df4e5968", tChecksum);
+//		assertEquals ("da5c02102f9b0e5f76a066bcecd28e2ddd3e27bdfc36e99a28adf0aba4eaaf22", tChecksum);
 
 		String tPrivateCompany1TestXML = "<Private id=\"802\" name=\"TEST-Champlain &amp; St. Lawrence\" " +
 				"    abbrev=\"TEST-C&amp;SL\" cost=\"40\" \n" + 
@@ -42,11 +45,26 @@ class ChecksumCalcTests {
 				"    special=\"Free Tile Placement\">\n" + 
 				"    <Benefits>\n" + 
 				"        <Benefit actorType=\"Share Company\" class=\"ge18xx.company.benefit.TilePlacementBenefit\" extra=\"true\" mapCell=\"B20\" cost=\"0\" passive=\"false\"/>\n" + 
-				"		    </Benefits>\n" + "		<Certificate director=\"YES\" percentage=\"100\"\n" + 
+				"		</Benefits>\n" + 
+				"		<Certificate director=\"YES\" percentage=\"100\"\n" + 
 				"			allowedOwners=\"IPO,Player,Share\" />\n" + 
 				"    </Private>\n";
+		
+		tTrimmedMessage = checksumCalc.stripWhitespaceFromXML (tPrivateCompany1TestXML);
+		assertEquals (tTrimmedMessage, "<Private id=\"802\" name=\"TEST-Champlain &amp; St. Lawrence\" abbrev=\"TEST-C&amp;SL\" cost=\"40\" \n"
+				+ "revenue=\"10\" homeCell1=\"B20\" homeLocation1=\"7\" homeLocation2=\"12\" \n"
+				+ "note=\"A Corporation owning the C&amp;SL may lay a tile onC&amp;SL's hex even if this hex is not connected to the Corporation's Railhead. This free tile placement is in addition to the Corporation's tile placement — For this turn only the Corporation may play two tiles. The tile played on the C&amp;SL hex does not have to connect to any existing adjacent track.\"\n"
+				+ "special=\"Free Tile Placement\">\n"
+				+ "<Benefits>\n"
+				+ "<Benefit actorType=\"Share Company\" class=\"ge18xx.company.benefit.TilePlacementBenefit\" extra=\"true\" mapCell=\"B20\" cost=\"0\" passive=\"false\"/>\n"
+				+ "</Benefits>\n"
+				+ "<Certificate director=\"YES\" percentage=\"100\"\n"
+				+ "allowedOwners=\"IPO,Player,Share\" />\n"
+				+ "</Private>\n");
+
 		tChecksum = checksumCalc.MD5 (tPrivateCompany1TestXML, ChecksumCalc.STRIP_WHITESPACE);
-		assertEquals ("d3d2b5b7a09f3b544e8c9dcf3daeaf91", tChecksum);
+		assertEquals ("a2baba26db4a0504cb068dd2500ed5e9", tChecksum);
+//		assertEquals ("b261944f9bb6c8af6f33d0d21e94a12554b16741b80b6a06ce4ac337e4f3ee34", tChecksum);
 
 		String tGameInfoMacXML = "<GameInfo gameID=\"2024-08-20-1506\" name=\"1830\">\n" + 
 				"    <VariantEffects>\n" + 
@@ -56,8 +74,19 @@ class ChecksumCalcTests {
 				"        <VariantEffect action=\"Set Diesel Train Quantity to 6 (Standard)\" class=\"ge18xx.game.variants.SetTrainCountVEffect\" defaultEffect=\"true\" hide=\"false\" id=\"202\" name=\"Standard\" quantity=\"6\" state=\"false\" trainName=\"Diesel\"/>\n" + 
 				"    </VariantEffects>\n" + 
 				"</GameInfo>\n";
+		tTrimmedMessage = checksumCalc.stripWhitespaceFromXML (tGameInfoMacXML);
+		assertEquals (tTrimmedMessage, "<GameInfo gameID=\"2024-08-20-1506\" name=\"1830\">\n"
+				+ "<VariantEffects>\n"
+				+ "<VariantEffect action=\"Allow M&amp;H Exchange at Operating Round Start\" benefitName=\"QUERY EXCHANGE\" class=\"ge18xx.game.variants.EnableBenefitVEffect\" companyID=\"1004\" defaultEffect=\"true\" hide=\"false\" id=\"501\" name=\"Query M&amp;H Exchange\" state=\"true\"/>\n"
+				+ "<VariantEffect action=\"Require Share Company to Operate before Sale\" attributeName=\"operateBeforeSale\" class=\"ge18xx.game.variants.ModifyGameInfoVEffect\" defaultEffect=\"true\" hide=\"false\" id=\"801\" name=\"Operate Before Sale\" state=\"true\"/>\n"
+				+ "<VariantEffect action=\"Random Player Start Order\" attributeName=\"randomizeStartOrder\" class=\"ge18xx.game.variants.ModifyGameInfoVEffect\" defaultEffect=\"true\" hide=\"false\" id=\"901\" name=\"Randomize Start Order\" state=\"false\"/>\n"
+				+ "<VariantEffect action=\"Set Diesel Train Quantity to 6 (Standard)\" class=\"ge18xx.game.variants.SetTrainCountVEffect\" defaultEffect=\"true\" hide=\"false\" id=\"202\" name=\"Standard\" quantity=\"6\" state=\"false\" trainName=\"Diesel\"/>\n"
+				+ "</VariantEffects>\n"
+				+ "</GameInfo>\n");
+		
 		tChecksum = checksumCalc.MD5 (tGameInfoMacXML, ChecksumCalc.STRIP_WHITESPACE);
 		assertEquals ("2de6c1db22bacf3e22dc655cf74d7303", tChecksum);
+//		assertEquals ("aa94f4340567d5261e09572242b7ff7fca2999e7f8de94cee7b95701a9ed0bbb", tChecksum);
 
 		String tGameInfoWindowsXML = "<GameInfo gameID=\"2024-08-20-1506\" name=\"1830\">\r\n" + 
 				"<VariantEffects>\r\n" + 
@@ -69,5 +98,6 @@ class ChecksumCalcTests {
 				"</GameInfo>\r\n\n";
 		tChecksum = checksumCalc.MD5 (tGameInfoWindowsXML, ChecksumCalc.STRIP_WHITESPACE);
 		assertEquals ("2de6c1db22bacf3e22dc655cf74d7303", tChecksum);
+//		assertEquals ("aa94f4340567d5261e09572242b7ff7fca2999e7f8de94cee7b95701a9ed0bbb", tChecksum);
 	}
 }

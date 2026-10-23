@@ -80,8 +80,9 @@ public class GameFrameConfig {
 	}
 
 	public String getFrameName (int aFrameIndex) {
-		String tFrameName = FrameInfo.NO_FRAME_NAME;
+		String tFrameName;
 
+		tFrameName = FrameInfo.NO_FRAME_NAME;
 		if ((aFrameIndex >= 0) && (aFrameIndex < getFrameCount ())) {
 			tFrameName = frameInfoList.get (aFrameIndex).getName ();
 		}
@@ -90,8 +91,9 @@ public class GameFrameConfig {
 	}
 
 	public FrameInfo getFrameInfoFor (String aFrameName) {
-		FrameInfo tFrameInfoRequested = FrameInfo.NO_FRAME_INFO;
+		FrameInfo tFrameInfoRequested;
 
+		tFrameInfoRequested = FrameInfo.NO_FRAME_INFO;
 		for (FrameInfo tFrameInfo : frameInfoList) {
 			if (aFrameName.startsWith (tFrameInfo.getName ())) {
 				tFrameInfoRequested = tFrameInfo;

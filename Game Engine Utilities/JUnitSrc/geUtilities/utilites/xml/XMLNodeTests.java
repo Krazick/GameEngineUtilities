@@ -1,11 +1,13 @@
 package geUtilities.utilites.xml;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import geUtilities.xml.AttributeName;
 import geUtilities.xml.ElementName;
 import geUtilities.xml.XMLNode;
 
@@ -38,4 +40,25 @@ class XMLNodeTests {
 		assertNotNull (tChildNode);
 	}
 
+	@Test
+	@DisplayName ("Test getting Attribute and Value") 
+	void findAttributeAndValueTest () {
+		XMLNode tMinorNode;
+		AttributeName tNameAttribute;
+		String tAttributeValue;
+		String tMinorCompany1TestXML = "	<Minor id=\"1701\" name=\"Bergisch-Märkische Bahn\" abbrev=\"1\" "
+				+ "		cost=\"80\"\n"
+				+ "		homeCell1=\"H2\" homeLocation1=\"15\" upgradeID=\"1810\" upgradePercentage=\"5\"\n"
+				+ "		formUpgrade=\"true\" formPhase=\"2.3\"\n"
+				+ "		bgColor=\"Black\" fgColor=\"White\" homeColor=\"Black\" tokens=\"1\">\n"
+				+ "		<Certificate director=\"YES\" percentage=\"50\" allowedOwners=\"IPO,Player\" />\n"
+				+ "		<Certificate director=\"NO\" percentage=\"50\" allowedOwners=\"Minor\" />\n"
+				+ "	</Minor>\n";
+		
+		tMinorNode = utilityTestFactory.buildXMLNode (tMinorCompany1TestXML);
+		tNameAttribute = new AttributeName ("name");
+		tAttributeValue = tMinorNode.getThisAttribute (tNameAttribute);
+		assertEquals (tAttributeValue, "Bergisch-Märkische Bahn");
+		System.out.println ("Attribute " + tNameAttribute + " Value: " + tAttributeValue);
+	}
 }

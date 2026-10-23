@@ -15,4 +15,6 @@ public interface GameManagerI {
 	public Image getIconImage ();
 
 	public GameFrameConfig getGameFrameConfig ();
+
+	public String getClientUserName ();
 }
