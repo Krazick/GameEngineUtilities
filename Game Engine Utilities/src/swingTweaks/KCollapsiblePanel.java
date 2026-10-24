@@ -49,7 +49,7 @@ public class KCollapsiblePanel extends JPanel {
  
     MouseListener mouseListener = new MouseAdapter () {
         @Override
-        public void mouseClicked (MouseEvent e) {
+        public void mouseClicked (MouseEvent eMouseEvent) {
             toggleVisibility ();
             System.out.println ("Mouse Clicked on Collapsable Panel");
         }
@@ -57,21 +57,21 @@ public class KCollapsiblePanel extends JPanel {
  
     ComponentListener contentComponentListener = new ComponentAdapter () {
         @Override
-        public void componentShown (ComponentEvent e) {
+        public void componentShown (ComponentEvent eComponentEvent) {
             updateBorderTitle ();
         }
         @Override
-        public void componentHidden (ComponentEvent e) {
+        public void componentHidden (ComponentEvent eComponentEvent) {
             updateBorderTitle ();
         }
     };
  
     public void setCollapsable (boolean aCollapsable) {
-    		collapsable = aCollapsable;
+    	collapsable = aCollapsable;
     }
     
     public boolean isCollapsable () {
-    		return collapsable;
+    	return collapsable;
     }
     
     public String getTitle () {
@@ -84,63 +84,71 @@ public class KCollapsiblePanel extends JPanel {
     }
  
     @Override
-    public Component add (Component comp) {
-        comp.addComponentListener (contentComponentListener);
-        Component r = super.add (comp);
-        updateBorderTitle();
+    public Component add (Component aComponent) {
+    	Component tComponent;
+    	
+       aComponent.addComponentListener (contentComponentListener);
+       tComponent = super.add (aComponent);
+       updateBorderTitle ();
         
-        return r;
+       return tComponent;
     }
  
     @Override
-    public Component add (String name, Component comp) {
-        comp.addComponentListener (contentComponentListener);
-        Component r = super.add (name, comp);
+    public Component add (String aName, Component aComponent) {
+    	Component tComponent;
+    	
+        aComponent.addComponentListener (contentComponentListener);
+        tComponent = super.add (aName, aComponent);
         updateBorderTitle ();
         
-        return r;
+        return tComponent;
     }
  
     @Override
-    public Component add( Component comp, int index) {
-        comp.addComponentListener (contentComponentListener);
-        Component r = super.add (comp, index);
+    public Component add (Component aComponent, int aIndex) {
+       	Component tComponent;
+
+        aComponent.addComponentListener (contentComponentListener);
+        tComponent = super.add (aComponent, aIndex);
         updateBorderTitle ();
         
-        return r;
+        return tComponent;
     }
  
     @Override
-    public void add (Component comp, Object constraints) {
-        comp.addComponentListener (contentComponentListener);
-        super.add(comp, constraints);
-        updateBorderTitle();
-    }
- 
-    @Override
-    public void add (Component comp, Object constraints, int index) {
-        comp.addComponentListener (contentComponentListener);
-        super.add (comp, constraints, index);
+    public void add (Component aComponent, Object aConstraints) {
+        aComponent.addComponentListener (contentComponentListener);
+        super.add (aComponent, aConstraints);
         updateBorderTitle ();
     }
  
     @Override
-    public void remove (int index) {
-        Component comp = getComponent (index);
-        comp.removeComponentListener (contentComponentListener);
-        super.remove (index);
+    public void add (Component aComponent, Object aConstraints, int aIndex) {
+        aComponent.addComponentListener (contentComponentListener);
+        super.add (aComponent, aConstraints, aIndex);
+        updateBorderTitle ();
     }
  
     @Override
-    public void remove (Component comp) {
-        comp.removeComponentListener (contentComponentListener);
-        super.remove (comp);
+    public void remove (int aIndex) {
+      	Component tComponent;
+
+        tComponent = getComponent (aIndex);
+        tComponent.removeComponentListener (contentComponentListener);
+        super.remove (aIndex);
+    }
+ 
+    @Override
+    public void remove (Component aComponent) {
+        aComponent.removeComponentListener (contentComponentListener);
+        super.remove (aComponent);
     }
  
     @Override
     public void removeAll () {
-        for (Component c : getComponents ()) {
-            c.removeComponentListener (contentComponentListener);
+        for (Component tComponent : getComponents ()) {
+        	tComponent.removeComponentListener (contentComponentListener);
         }
         super.removeAll ();
     }
@@ -175,8 +183,8 @@ public class KCollapsiblePanel extends JPanel {
     }
  
     protected final boolean hasInvisibleComponent () {
-        for (Component c : getComponents ()) {
-            if (!c.isVisible ()) {
+        for (Component tComponent : getComponents ()) {
+            if (!tComponent.isVisible ()) {
                 return true;
             }
         }
