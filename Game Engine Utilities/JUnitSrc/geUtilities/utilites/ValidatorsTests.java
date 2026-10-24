@@ -14,22 +14,22 @@ class ValidatorsTests {
 	@Test
 	@DisplayName ("Test Valid IPv4 or Domain Name")
 	void isValidIPorDomainTests () {
-		String domainOrIP;
+		String tDomainOrIP;
 		
-		domainOrIP = "geeksforgeeks.org";
-		assertTrue (Validators.isValidIPorDomain (domainOrIP));
+		tDomainOrIP = "geeksforgeeks.org";
+		assertTrue (Validators.isValidIPorDomain (tDomainOrIP));
 		
-		domainOrIP = "geeksforgeeks.org";
-		assertTrue (Validators.isValidIPorDomain (domainOrIP));
+		tDomainOrIP = "geeksforgeeks.org";
+		assertTrue (Validators.isValidIPorDomain (tDomainOrIP));
 		
-		domainOrIP = "-geeksforgeeks.org";
-		assertFalse (Validators.isValidIPorDomain (domainOrIP));
+		tDomainOrIP = "-geeksforgeeks.org";
+		assertFalse (Validators.isValidIPorDomain (tDomainOrIP));
 		
-		domainOrIP =  "192.168.1.21";
-		assertTrue (Validators.isValidIPorDomain (domainOrIP));
+		tDomainOrIP =  "192.168.1.21";
+		assertTrue (Validators.isValidIPorDomain (tDomainOrIP));
 		
-		domainOrIP =  "192.168.1.21.7";
-		assertFalse (Validators.isValidIPorDomain (domainOrIP));
+		tDomainOrIP =  "192.168.1.21.7";
+		assertFalse (Validators.isValidIPorDomain (tDomainOrIP));
 	}
 	
 	@Test
