@@ -41,7 +41,7 @@ class XMLNodeTests {
 	}
 
 	@Test
-	@DisplayName ("Test getting Attribute and Value") 
+	@DisplayName ("Test getting Attribute and Value")
 	void findAttributeAndValueTest () {
 		XMLNode tMinorNode;
 		AttributeName tNameAttribute;
@@ -52,9 +52,8 @@ class XMLNodeTests {
 				+ "		formUpgrade=\"true\" formPhase=\"2.3\"\n"
 				+ "		bgColor=\"Black\" fgColor=\"White\" homeColor=\"Black\" tokens=\"1\">\n"
 				+ "		<Certificate director=\"YES\" percentage=\"50\" allowedOwners=\"IPO,Player\" />\n"
-				+ "		<Certificate director=\"NO\" percentage=\"50\" allowedOwners=\"Minor\" />\n"
-				+ "	</Minor>\n";
-		
+				+ "		<Certificate director=\"NO\" percentage=\"50\" allowedOwners=\"Minor\" />\n" + "	</Minor>\n";
+
 		tMinorNode = utilityTestFactory.buildXMLNode (tMinorCompany1TestXML);
 		tNameAttribute = new AttributeName ("name");
 		tAttributeValue = tMinorNode.getThisAttribute (tNameAttribute);
