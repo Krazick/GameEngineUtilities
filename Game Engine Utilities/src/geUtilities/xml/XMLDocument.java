@@ -26,7 +26,7 @@ public class XMLDocument {
 	public static final Document NO_DOCUMENT = null;
 	public static final XMLDocument NO_XML_DOCUMENT = null;
 	Document document;
-	
+
 	public XMLDocument (Document aDocument) {
 		document = aDocument;
 	}
@@ -102,7 +102,7 @@ public class XMLDocument {
 			}
 		}
 	}
-	
+
 	public XMLDocument parseXMLString (String aXMLString) {
 		DocumentBuilderFactory tDocBuilderFac;
 		DocumentBuilder tDocBuilder;
@@ -152,9 +152,9 @@ public class XMLDocument {
 	}
 
 	/**
-	 * If this XMLDocument has a Valid Document Element (ie non-NULL), find if the Document has
-	 * any children, then return TRUE. If the Document is NULL, or the Document has NO Children,
-	 * then return FALSE.
+	 * If this XMLDocument has a Valid Document Element (ie non-NULL), find if the
+	 * Document has any children, then return TRUE. If the Document is NULL, or the
+	 * Document has NO Children, then return FALSE.
 	 *
 	 * @return True if there are one (or more) Children of the document.
 	 *
@@ -172,11 +172,12 @@ public class XMLDocument {
 	}
 
 	/**
-	 * Create an XMLElement with the provided Element Name.
-	 * If the EntityName is NULL, or the String in the Entity Name is NULL this
-	 * will return a NO_XML_ELEMENT
+	 * Create an XMLElement with the provided Element Name. If the EntityName is
+	 * NULL, or the String in the Entity Name is NULL this will return a
+	 * NO_XML_ELEMENT
 	 *
-	 * @param aElementName The Element Name to be created. No Attributes or children will be attached
+	 * @param aElementName The Element Name to be created. No Attributes or children
+	 *                     will be attached
 	 *
 	 * @return If a Valid Entity
 	 */
@@ -202,12 +203,12 @@ public class XMLDocument {
 
 	public Element getDocumentElement (Document aDocument) {
 		Element tElement;
-		
+
 		tElement = aDocument.getDocumentElement ();
-		
+
 		return tElement;
 	}
-	
+
 	public XMLNode getDocumentNode () {
 		XMLNode tXMLNode;
 		Element tElement;
@@ -221,7 +222,7 @@ public class XMLDocument {
 
 		return tXMLNode;
 	}
-	
+
 	public XMLNode getDocumentNode (Document aDocument) {
 		XMLNode tXMLNode;
 		Element tElement;
@@ -235,7 +236,7 @@ public class XMLDocument {
 
 		return tXMLNode;
 	}
-	
+
 	public XMLNode getDocumentNodeFromElement () {
 		return new XMLNode (document.getDocumentElement ());
 	}
@@ -279,7 +280,7 @@ public class XMLDocument {
 		StringWriter tStringWriter;
 		StreamResult tStreamResult;
 		DOMSource tDOMSource;
-		
+
 		try {
 			// set up a transformer
 			tTransformerFactory = TransformerFactory.newInstance ();
@@ -293,7 +294,7 @@ public class XMLDocument {
 			tDOMSource = getDOMSource ();
 			tTransformer.transform (tDOMSource, tStreamResult);
 			tXMLString = tStringWriter.toString ();
-			tXMLString.replaceAll ("\r\n",  "\n");
+			tXMLString.replaceAll ("\r\n", "\n");
 		} catch (Exception tException) {
 			System.err.println (tException);
 			tException.printStackTrace ();
@@ -301,22 +302,22 @@ public class XMLDocument {
 
 		return tXMLString;
 	}
-	
+
 	public String MD5 () {
 		String tMD5Sum;
-		
+
 		tMD5Sum = MD5 (ChecksumCalc.STRIP_WHITESPACE);
-		
+
 		return tMD5Sum;
 	}
-	
+
 	public String MD5 (boolean aStripWhitespace) {
 		ChecksumCalc tChecksum;
 		String tMD5Sum;
-		
+
 		tChecksum = new ChecksumCalc ("MD5");
 		tMD5Sum = tChecksum.MD5 (toXMLString (), aStripWhitespace);
-		
+
 		return tMD5Sum;
 	}
 }

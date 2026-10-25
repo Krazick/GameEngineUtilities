@@ -233,7 +233,7 @@ public class XMLNode {
 	private long getThisLongAttribute (String aAttributeName, long aDefaultValue) {
 		String tValue;
 		long tLongValue;
-		
+
 		tValue = getThisAttribute (aAttributeName);
 		if (tValue == NO_VALUE) {
 			tLongValue = aDefaultValue;
@@ -241,7 +241,7 @@ public class XMLNode {
 		} else {
 			tLongValue = Long.parseLong (tValue);
 		}
-		
+
 		return tLongValue;
 	}
 
@@ -275,14 +275,14 @@ public class XMLNode {
 	private Duration getThisDurationAttribute (String aAttributeName, Duration aDefaultValue) {
 		String tValue;
 		Duration tDurationValue;
-		
+
 		tValue = getThisAttribute (aAttributeName);
 		if (tValue == NO_VALUE) {
 			tDurationValue = aDefaultValue;
 		} else {
 			tDurationValue = Duration.parse (tValue);
 		}
-		
+
 		return tDurationValue;
 	}
 
@@ -316,14 +316,14 @@ public class XMLNode {
 	private LocalDateTime getThisLocalDateTimeAttribute (String aAttributeName, LocalDateTime aDefaultValue) {
 		String tValue;
 		LocalDateTime tLocalDateTimeValue;
-		
+
 		tValue = getThisAttribute (aAttributeName);
 		if (tValue == NO_VALUE) {
 			tLocalDateTimeValue = aDefaultValue;
 		} else {
 			tLocalDateTimeValue = LocalDateTime.parse (tValue);
 		}
-		
+
 		return tLocalDateTimeValue;
 	}
 

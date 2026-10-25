@@ -9,7 +9,7 @@ public abstract class GameEngineManager implements GameManagerI {
 	public GameEngineManager () {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Override
 	public abstract String getActiveGameName ();
 
@@ -21,7 +21,7 @@ public abstract class GameEngineManager implements GameManagerI {
 
 	@Override
 	public abstract GameFrameConfig getGameFrameConfig ();
-	
+
 	@Override
 	public abstract String getClientUserName ();
 

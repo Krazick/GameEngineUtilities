@@ -36,7 +36,7 @@ public class XMLElement {
 		tElement = (Element) aNode;
 		setElement (tElement);
 	}
-	
+
 	public void appendChild (XMLElement aXMLElement) {
 		appendChild (aXMLElement, ADD_CHECKSUM, NO_LABEL);
 	}
@@ -67,11 +67,11 @@ public class XMLElement {
 		XMLDocument tXMLDocument;
 		Element tElement;
 //		String tHashKey;
-		
+
 		tXMLElementMD5 = aXMLElement.MD5 ();
 		tXMLDocument = new XMLDocument (aElement.getOwnerDocument ());
 		tChecksumXMLElement = tXMLDocument.createElement (EN_CHECKSUM_XMLELEMENT);
-		tChecksumXMLElement.setAttribute (AN_NODE_NAME, aElement.getNodeName ()); 
+		tChecksumXMLElement.setAttribute (AN_NODE_NAME, aElement.getNodeName ());
 		tChecksumXMLElement.setAttribute (AN_LABEL, aLabel);
 		tChecksumXMLElement.setAttribute (AN_CHECKSUM, tXMLElementMD5);
 //		if (aLabel != NO_LABEL) {
@@ -161,7 +161,7 @@ public class XMLElement {
 
 		return tFoundElement;
 	}
-	
+
 	public String toXMLString () {
 		String tXMLString = GUI.EMPTY_STRING;
 
@@ -170,12 +170,12 @@ public class XMLElement {
 			Transformer tTransformer = tTransformerFactory.newTransformer ();
 			tTransformer.setOutputProperty (OutputKeys.OMIT_XML_DECLARATION, "yes");
 			tTransformer.setOutputProperty (OutputKeys.INDENT, "yes");
-		
+
 			// create string from XML tree
 			StringWriter tStringWriter = new StringWriter ();
 			StreamResult tStreamResult = new StreamResult (tStringWriter);
 			DOMSource tDOMSource = new DOMSource (element);
-			
+
 			tTransformer.transform (tDOMSource, tStreamResult);
 			tXMLString = tStringWriter.toString ();
 		} catch (Exception tException) {
@@ -188,10 +188,10 @@ public class XMLElement {
 	public String MD5 () {
 		ChecksumCalc tChecksum;
 		String tMD5Sum;
-		
+
 		tChecksum = new ChecksumCalc ();
 		tMD5Sum = tChecksum.MD5 (toXMLString ());
-		
+
 		return tMD5Sum;
 	}
 

@@ -7,13 +7,14 @@ package geUtilities.xml;
 import geUtilities.GUI;
 
 /**
- * The Class NoSpaceString, that will only allow a String without Spaces, or null
+ * The Class NoSpaceString, that will only allow a String without Spaces, or
+ * null
  */
 public class NoSpaceString {
-	
+
 	/** The Constant NULL_STRING. */
 	public static final String NULL_STRING = GUI.NULL_STRING;
-	
+
 	/** The string. */
 	String string;
 
@@ -25,8 +26,8 @@ public class NoSpaceString {
 	}
 
 	/**
-	 * Instantiates a new no space string. If length Zero, save a NULL String.
-	 * If string has one (or more) spaces, it will store as a NULL String.
+	 * Instantiates a new no space string. If length Zero, save a NULL String. If
+	 * string has one (or more) spaces, it will store as a NULL String.
 	 *
 	 * @param aString the a string
 	 */

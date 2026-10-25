@@ -46,7 +46,7 @@ public class XMLFrame extends JFrame {
 	public XMLFrame () {
 		super ();
 	}
-	
+
 	public void setGameManager (String aFrameName, GameEngineManager aGameManager) {
 		setGameManager (aGameManager);
 		if (gameEngineManager == GameManagerI.NO_GAME_MANAGER) {
@@ -56,23 +56,23 @@ public class XMLFrame extends JFrame {
 		}
 		setTitle (aFrameName);
 	}
-	
+
 	public void setGameManager (GameEngineManager aGameManager) {
 		gameEngineManager = aGameManager;
 	}
-	
+
 	public void setGameManager (NetworkGameSupport aGameManager) {
 		gameEngineManager = (GameEngineManager) aGameManager;
 	}
-	
+
 	public GameEngineManager getGameManager () {
 		return gameEngineManager;
 	}
-	
+
 	public String getPlayerName () {
 		return gameEngineManager.getClientUserName ();
 	}
-	
+
 	protected void updateFrameTitle (String aBaseTitle) {
 		String tFrameTitle;
 
@@ -106,10 +106,10 @@ public class XMLFrame extends JFrame {
 			add (scrollPane);
 		}
 	}
-	
+
 	public JSlider buildScaleSlider (int aSliderOrientation, ChangeListener aSliderListener) {
 		JSlider tScaleSlider;
-		
+
 		tScaleSlider = new JSlider (aSliderOrientation, 4, 16, 8);
 		tScaleSlider.addChangeListener (aSliderListener);
 
@@ -118,7 +118,7 @@ public class XMLFrame extends JFrame {
 		tScaleSlider.setMinorTickSpacing (1);
 		tScaleSlider.setPaintTicks (true);
 		tScaleSlider.setPaintLabels (true);
-		
+
 		return tScaleSlider;
 	}
 
@@ -151,7 +151,7 @@ public class XMLFrame extends JFrame {
 
 		return tXMLFileWasLoaded;
 	}
-	
+
 	public boolean loadXML (String aXMLFileName, LoadableXMLI aLoadableObject) throws IOException {
 		boolean tXMLFileWasLoaded;
 		XMLDocument tXMLDocument;
@@ -214,12 +214,12 @@ public class XMLFrame extends JFrame {
 			setDefaults (tFrameInfo);
 			setDefaultFrameInfo ();
 		}
-		
+
 		// If there is a Default Hex Scale for this Frame, set it.
 		if (defaultHexScale > 0) {
 			setHexScale (defaultHexScale);
 		}
-		
+
 		// If the Visibility Flag passed in is
 		// ON- always set it Visible,
 		// OFF - always set it to Invisible
@@ -235,7 +235,7 @@ public class XMLFrame extends JFrame {
 
 	public void setDefaults (XMLNode aXMLMapRoot) {
 		FrameInfo tFrameInfo;
-		
+
 		tFrameInfo = new FrameInfo (aXMLMapRoot);
 		setDefaults (tFrameInfo);
 	}
@@ -246,8 +246,8 @@ public class XMLFrame extends JFrame {
 				aFrameInfo.getState ());
 	}
 
-	public void setDefaults (int aWidth, int aHeight, int aXLocation, int aYLocation, boolean aVisible, 
-							int aHexScale, int aState) {
+	public void setDefaults (int aWidth, int aHeight, int aXLocation, int aYLocation, boolean aVisible, int aHexScale,
+			int aState) {
 		defaultWidth = aWidth;
 		defaultHeight = aHeight;
 		defaultXLocation = aXLocation;
@@ -284,7 +284,7 @@ public class XMLFrame extends JFrame {
 	public int getDefaultState () {
 		return defaultState;
 	}
-	
+
 	public void setDefaultFrameInfo () {
 		setLocation (defaultXLocation, defaultYLocation);
 		setSize (defaultWidth, defaultHeight);
@@ -346,20 +346,20 @@ public class XMLFrame extends JFrame {
 
 	public boolean isMinimized () {
 		boolean tIsMinimized;
-		
-		 if (getExtendedState () == JFrame.ICONIFIED) {
+
+		if (getExtendedState () == JFrame.ICONIFIED) {
 			tIsMinimized = true;
 		} else {
 			tIsMinimized = false;
 		}
-		
+
 		return tIsMinimized;
 	}
-	
+
 	public void setFrameNormal () {
 		setState (JFrame.NORMAL);
 	}
-	
+
 	public Point getOffsetFrame () {
 		Point tFramePoint;
 		Point tNewPoint;
@@ -386,7 +386,7 @@ public class XMLFrame extends JFrame {
 	public void hideFrame () {
 		setVisible (false);
 	}
-	
+
 	public void setScrollPanePSize (Dimension aNewDimension) {
 		if (scrollPane != GUI.NO_SCROLL_PANE) {
 			scrollPane.setPreferredSize (aNewDimension);
@@ -397,28 +397,28 @@ public class XMLFrame extends JFrame {
 	/**
 	 * Create a new KButton with the specified parameters.
 	 * 
-	 * @param aLabel Label for the Button
-	 * @param aAction Action Command for the Button
-	 * @param aListener The Action Listener Class
+	 * @param aLabel     Label for the Button
+	 * @param aAction    Action Command for the Button
+	 * @param aListener  The Action Listener Class
 	 * @param aAlignment The Alignment
 	 * @return the newly create KButton
 	 */
 	public KButton setupButton (String aLabel, String aAction, ActionListener aListener, float aAlignment) {
 		KButton tButton;
-	
+
 		tButton = new KButton (aLabel);
 		setupButton (aAction, aListener, aAlignment, tButton);
-	
+
 		return tButton;
 	}
 
 	/**
 	 * Modify the provided KButton with the specified parameters
 	 * 
-	 * @param aAction Action Command for the Button
-	 * @param aListener The Action Listener Class
+	 * @param aAction    Action Command for the Button
+	 * @param aListener  The Action Listener Class
 	 * @param aAlignment The Alignment
-	 * @param aButton The Button to be modified
+	 * @param aButton    The Button to be modified
 	 */
 	public void setupButton (String aAction, ActionListener aListener, float aAlignment, KButton aButton) {
 		aButton.setActionCommand (aAction);

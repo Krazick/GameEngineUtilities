@@ -22,7 +22,8 @@ public class ElementName extends NoSpaceString {
 	 * If the created ElementName has a Valid No-Space-String with the first
 	 * Character as lowerCase, this will return true.
 	 *
-	 * @return If the String provided has been stored by the Constructor as Non-Null, return TRUE, otherwise FALSE
+	 * @return If the String provided has been stored by the Constructor as
+	 *         Non-Null, return TRUE, otherwise FALSE
 	 *
 	 */
 	public boolean validElementName () {
