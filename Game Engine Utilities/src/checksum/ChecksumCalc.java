@@ -42,7 +42,6 @@ public class ChecksumCalc {
 	}
 	
 	public String MD5 (String aMessage, boolean aStripWhitespace) {
-		//
 		MessageDigest tMD;
 		StringBuffer tStringBuffer;
 		String tTrimmedMessage;
