@@ -24,6 +24,7 @@ public class Cell implements Cloneable {
 	protected int XCenter;
 	protected int YCenter;
 	protected boolean selected;
+	OffsetCoord offsetCoordinates;
 
 	public Cell ()  {
 		
@@ -120,5 +121,23 @@ public class Cell implements Cloneable {
 				}
 			}
 		}
+	}
+
+	public void setOffsetCoordinates (int aColIndex, int aRowIndex) {
+		offsetCoordinates = new OffsetCoord (aColIndex, aRowIndex);
+	}
+
+	public OffsetCoord getOffsetCoordinates () {
+		return offsetCoordinates;
+	}
+
+	public int getDistanceTo (Cell aCell) {
+		int tDistance;
+		OffsetCoord tOffsetCoord;
+		
+		tOffsetCoord = aCell.getOffsetCoordinates ();
+		tDistance = offsetCoordinates.getDistanceTo (OffsetCoord.ODD, tOffsetCoord);
+	
+		return tDistance;
 	}
 }
