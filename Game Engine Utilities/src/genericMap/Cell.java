@@ -1,5 +1,7 @@
 package genericMap;
 
+import java.awt.Graphics;
+
 import geUtilities.GUI;
 import geUtilities.xml.AttributeName;
 import geUtilities.xml.ElementName;
@@ -7,14 +9,21 @@ import geUtilities.xml.ElementName;
 public class Cell implements Cloneable {
 	public static final AttributeName AN_MAP_CELL_ID = new AttributeName ("mapCellID");
 	public static final ElementName EN_MAP_CELL = new ElementName ("MapCell");
-	public static final String DIRECTION_NS = "NS";
-	public static final String DIRECTION_EW = "EW";
-	public static final String NO_ID = GUI.EMPTY_STRING;
+	
+	// The AN_MAP_CELL_ID and EN_MAP_CELL are maintained so that don't have to update all the Map XML Files
+	// to use the new Attribute Names, and Element Names.
+	
+	// The NO_MAP_CELL value is null, but lots of code use this.
 	public static final Cell NO_MAP_CELL = null;
 	public static final Cell NO_CELL = null;
 	public static final Cell [] [] NO_CELLS = null;
+	public static final String DIRECTION_NS = "NS";
+	public static final String DIRECTION_EW = "EW";
+	public static final String NO_ID = GUI.EMPTY_STRING;
 	public static final String NO_DIRECTION = GUI.NULL_STRING;
 	public static final Cell NO_DESTINATION = null;
+	public static final int NO_LOCATION = -1;		// This should be Location.NO_LOCATION, but it is not
+													// a Generic Class "yet". 
 	public static boolean mapDirection;
 	public static void setMapDirection (boolean aMapDirection) {
 		mapDirection = aMapDirection;
@@ -25,6 +34,7 @@ public class Cell implements Cloneable {
 	protected int YCenter;
 	protected boolean selected;
 	OffsetCoord offsetCoordinates;
+	protected Cell neighbors [];
 
 	public Cell ()  {
 		
@@ -139,5 +149,74 @@ public class Cell implements Cloneable {
 		tDistance = offsetCoordinates.getDistanceTo (OffsetCoord.ODD, tOffsetCoord);
 	
 		return tDistance;
+	}
+
+	public void paintComponent (Graphics aGraphics) {
+
+	}
+
+	public boolean isNeighbor (Cell tPossibleNeighbor) {
+		boolean tIsNeighbor;
+	
+		tIsNeighbor = false;
+		if (tPossibleNeighbor != NO_CELL) {
+			for (Cell tNeighbor : neighbors) {
+				if (tNeighbor == tPossibleNeighbor) {
+					tIsNeighbor = true;
+				}
+			}
+		}
+	
+		return tIsNeighbor;
+	}
+
+	/**
+	 * Get the Cell that is the Neighbor to for this Cell on the specified side.
+	 *
+	 * @param aSide int value of the Location (must be between 0 and 5)
+	 *
+	 * @return NO_CELL if not a valid side, otherwise the neighbor Cell.
+	 * Also note, if the Cell has no neighbor on that side, it also returns NO_CELL
+	 *
+	 */
+	public Cell getNeighbor (int aSide) {
+		Cell tNeighbor;
+	
+		if ((aSide < 0) || (aSide > 5)) {
+			tNeighbor = NO_CELL;
+		} else {
+			tNeighbor = neighbors [aSide];
+		}
+	
+		return tNeighbor;
+	}
+
+	public void setNeighbor (int aSide, Cell aNeighbor, Cell aCell) {
+		if (neighbors [aSide] == NO_CELL) {
+			neighbors [aSide] = aNeighbor;
+			setNeighbor ((aSide + 3) % 6, aCell, this);
+		}
+	}
+
+	/**
+	 * Find the side on the Neighbor Cell that connects to this Cell.
+	 *
+	 * @param aNeighborCell Find this Neighbor, if valid and return the
+	 * Location of the side. Otherwise return NO_LOCATION;
+	 *
+	 * @return NO_LOCATION (-1) if the Neighbor is not Found for this Cell
+	 */
+	public int getSideFromNeighbor (Cell aNeighborMapCell) {
+		int tSideFromNeighbor;
+		int tSideIndex;
+		
+		tSideFromNeighbor = NO_LOCATION;
+		for (tSideIndex = 0; tSideIndex < 6; tSideIndex++) {
+			if (neighbors [tSideIndex] == aNeighborMapCell) {
+				tSideFromNeighbor = (tSideIndex + 3) % 6;
+			}
+		}
+	
+		return tSideFromNeighbor;
 	}
 }
