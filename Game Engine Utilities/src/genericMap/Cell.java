@@ -29,11 +29,12 @@ public class Cell implements Cloneable {
 		mapDirection = aMapDirection;
 	}
 
+	OffsetCoord offsetCoordinates;
 	protected String id = "A1";
 	protected int XCenter;
 	protected int YCenter;
+	protected int countOfSides = 6;
 	protected boolean selected;
-	OffsetCoord offsetCoordinates;
 	protected Cell neighbors [];
 
 	public Cell ()  {
@@ -113,10 +114,6 @@ public class Cell implements Cloneable {
 		return YCenter;
 	}
 
-	public void printlog () {
-		System.out.println ("Cell " + id);		// PRINTLOG
-	}
-
 	public void setMapDirection (String aMapDirection) {
 		if (aMapDirection == null) {
 			setMapDirection (false);
@@ -133,6 +130,31 @@ public class Cell implements Cloneable {
 		}
 	}
 
+	public void printlog () {
+		System.out.println ("Cell " + id);		// PRINTLOG
+	}
+
+	public void printNeighbors () {
+		String tCoordinates;
+		OffsetCoord tOffsetCoord;
+		
+		if (offsetCoordinates == null) {
+			tCoordinates = "NONE SET";
+		} else {
+			tCoordinates = offsetCoordinates.getCoordinates ();
+		}
+		System.out.println ("Cell " + id + " " + tCoordinates + " Neighbors: ");
+		for (int tIndex = 0; tIndex < countOfSides; tIndex++) {
+			tOffsetCoord = neighbors [tIndex].getOffsetCoordinates ();
+			if (tOffsetCoord == null) {
+				tCoordinates = "NONE SET";
+			} else {
+				tCoordinates = tOffsetCoord.getCoordinates ();
+			}
+			System.out.println (tIndex + ": " + neighbors [tIndex].getID () + " " + tCoordinates);
+		}
+	}
+	
 	public void setOffsetCoordinates (int aColIndex, int aRowIndex) {
 		offsetCoordinates = new OffsetCoord (aColIndex, aRowIndex);
 	}
@@ -182,7 +204,7 @@ public class Cell implements Cloneable {
 	public Cell getNeighbor (int aSide) {
 		Cell tNeighbor;
 	
-		if ((aSide < 0) || (aSide > 5)) {
+		if ((aSide < 0) || (aSide >= countOfSides)) {
 			tNeighbor = NO_CELL;
 		} else {
 			tNeighbor = neighbors [aSide];
@@ -191,13 +213,23 @@ public class Cell implements Cloneable {
 		return tNeighbor;
 	}
 
-	public void setNeighbor (int aSide, Cell aNeighbor, Cell aCell) {
+	public void setNeighbor (int aSide, Cell aNeighbor) {
 		if (neighbors [aSide] == NO_CELL) {
 			neighbors [aSide] = aNeighbor;
-			setNeighbor ((aSide + 3) % 6, aCell, this);
+			aNeighbor.setNeighbor (oppositeSide (aSide), this);
 		}
 	}
 
+	private int oppositeSide (int aSide) {
+		int tOppositeSide;
+		int tHalfCount;
+		
+		tHalfCount = countOfSides/2;
+		tOppositeSide = (aSide + tHalfCount) % countOfSides;
+		
+		return tOppositeSide;
+	}
+	
 	/**
 	 * Find the side on the Neighbor Cell that connects to this Cell.
 	 *
