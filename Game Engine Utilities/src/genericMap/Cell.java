@@ -238,14 +238,14 @@ public class Cell implements Cloneable {
 	 *
 	 * @return NO_LOCATION (-1) if the Neighbor is not Found for this Cell
 	 */
-	public int getSideFromNeighbor (Cell aNeighborMapCell) {
+	public int getSideFromNeighbor (Cell aNeighborCell) {
 		int tSideFromNeighbor;
 		int tSideIndex;
 		
 		tSideFromNeighbor = NO_LOCATION;
-		for (tSideIndex = 0; tSideIndex < 6; tSideIndex++) {
-			if (neighbors [tSideIndex] == aNeighborMapCell) {
-				tSideFromNeighbor = (tSideIndex + 3) % 6;
+		for (tSideIndex = 0; tSideIndex < countOfSides; tSideIndex++) {
+			if (neighbors [tSideIndex] == aNeighborCell) {
+				tSideFromNeighbor = oppositeSide (tSideIndex);
 			}
 		}
 	
