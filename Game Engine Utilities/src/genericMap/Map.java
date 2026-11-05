@@ -16,7 +16,7 @@ public class Map extends JLabel implements Cloneable, LoadableXMLI {
 	protected Cell cells [] [];
 
 	public Map () {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
