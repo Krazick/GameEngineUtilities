@@ -9,7 +9,7 @@ public class Hex {
     
     public Hex (int aQ, int aR, int aS) {
         if (aQ + aR + aS != 0) {
-        		throw new IllegalArgumentException ("q + r + s must be 0");
+        	throw new IllegalArgumentException ("q + r + s must be 0");
         }
         q = aQ;
         r = aR;
@@ -49,27 +49,27 @@ public class Hex {
     }
 
     static public ArrayList<Hex> directions = new ArrayList<Hex> () {
-    		private static final long serialVersionUID = 1L;
+    	private static final long serialVersionUID = 1L;
 
-    		{	add (new Hex (1, 0, -1)); 
-    			add (new Hex (1, -1, 0)); 
-    			add (new Hex (0, -1, 1)); 
-    			add (new Hex (-1, 0, 1)); 
-    			add (new Hex (-1, 1, 0)); 
-    			add (new Hex (0, 1, -1));
-    		}
+		{	add (new Hex (1, 0, -1)); 
+			add (new Hex (1, -1, 0)); 
+			add (new Hex (0, -1, 1)); 
+			add (new Hex (-1, 0, 1)); 
+			add (new Hex (-1, 1, 0)); 
+			add (new Hex (0, 1, -1));
+		}
 	};
 
     static public ArrayList<Hex> diagonals = new ArrayList<Hex> () {
-    		private static final long serialVersionUID = 1L;
+    	private static final long serialVersionUID = 1L;
 
-		{	add (new Hex (2, -1, -1)); 
-			add (new Hex (1, -2, 1)); 
-			add (new Hex (-1, -1, 2)); 
-			add (new Hex (-2, 1, 1)); 
-			add (new Hex (-1, 2, -1)); 
-			add (new Hex (1, 1, -2));
-		}
+    	{	add (new Hex (2, -1, -1)); 
+    		add (new Hex (1, -2, 1)); 
+    		add (new Hex (-1, -1, 2)); 
+    		add (new Hex (-2, 1, 1)); 
+    		add (new Hex (-1, 2, -1)); 
+    		add (new Hex (1, 1, -2));
+    	}
 	};
 
     public Hex diagonalNeighbor (int direction) {
@@ -77,7 +77,7 @@ public class Hex {
     }
 
     public int length () {
-    		int tLength;
+    	int tLength;
     	
         tLength = (int) ((Math.abs (q) + Math.abs (r) + Math.abs (s)) / 2);
         
