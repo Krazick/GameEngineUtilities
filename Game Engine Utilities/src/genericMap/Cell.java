@@ -38,10 +38,13 @@ public class Cell implements Cloneable {
 	protected Cell neighbors [];
 
 	public Cell ()  {
-		
-		
+		this (0, 0);
 	}
 
+	public Cell (int aXCenter, int aYCenter) {
+		setXY (aXCenter, aYCenter);
+	}
+	
 	@Override
 	public Cell clone () throws CloneNotSupportedException {
 		Cell tClone;
@@ -102,16 +105,16 @@ public class Cell implements Cloneable {
 		return tSameID;
 	}
 
-	public boolean getMapDirection () {
-		return mapDirection;
-	}
-
 	public int getXCenter () {
 		return XCenter;
 	}
 
 	public int getYCenter () {
 		return YCenter;
+	}
+
+	public boolean getMapDirection () {
+		return mapDirection;
 	}
 
 	public void setMapDirection (String aMapDirection) {
@@ -130,29 +133,14 @@ public class Cell implements Cloneable {
 		}
 	}
 
-	public void printlog () {
-		System.out.println ("Cell " + id);		// PRINTLOG
-	}
-
-	public void printNeighbors () {
-		String tCoordinates;
-		OffsetCoord tOffsetCoord;
+	public int oppositeSide (int aSide) {
+		int tOppositeSide;
+		int tHalfCount;
 		
-		if (offsetCoordinates == null) {
-			tCoordinates = "NONE SET";
-		} else {
-			tCoordinates = offsetCoordinates.getCoordinates ();
-		}
-		System.out.println ("Cell " + id + " " + tCoordinates + " Neighbors: ");
-		for (int tIndex = 0; tIndex < countOfSides; tIndex++) {
-			tOffsetCoord = neighbors [tIndex].getOffsetCoordinates ();
-			if (tOffsetCoord == null) {
-				tCoordinates = "NONE SET";
-			} else {
-				tCoordinates = tOffsetCoord.getCoordinates ();
-			}
-			System.out.println (tIndex + ": " + neighbors [tIndex].getID () + " " + tCoordinates);
-		}
+		tHalfCount = countOfSides/2;
+		tOppositeSide = (aSide + tHalfCount) % countOfSides;
+		
+		return tOppositeSide;
 	}
 	
 	public void setOffsetCoordinates (int aColIndex, int aRowIndex) {
@@ -171,10 +159,6 @@ public class Cell implements Cloneable {
 		tDistance = offsetCoordinates.getDistanceTo (OffsetCoord.ODD, tOffsetCoord);
 	
 		return tDistance;
-	}
-
-	public void paintComponent (Graphics aGraphics) {
-
 	}
 
 	public boolean isNeighbor (Cell tPossibleNeighbor) {
@@ -219,16 +203,6 @@ public class Cell implements Cloneable {
 			aNeighbor.setNeighbor (oppositeSide (aSide), this);
 		}
 	}
-
-	private int oppositeSide (int aSide) {
-		int tOppositeSide;
-		int tHalfCount;
-		
-		tHalfCount = countOfSides/2;
-		tOppositeSide = (aSide + tHalfCount) % countOfSides;
-		
-		return tOppositeSide;
-	}
 	
 	/**
 	 * Find the side on the Neighbor Cell that connects to this Cell.
@@ -250,5 +224,47 @@ public class Cell implements Cloneable {
 		}
 	
 		return tSideFromNeighbor;
+	}
+
+	public int getSideToNeighbor (Cell aNeighborMapCell) {
+		int tSideToNeighbor;
+	
+		tSideToNeighbor = NO_LOCATION;
+		for (int tSideIndex = 0; tSideIndex < countOfSides; tSideIndex++) {
+			if (neighbors [tSideIndex] == aNeighborMapCell) {
+				tSideToNeighbor = tSideIndex;
+			}
+		}
+	
+		return tSideToNeighbor;
+	}
+
+	public void paintComponent (Graphics aGraphics) {
+
+	}
+
+	public void printlog () {
+		System.out.println ("Cell " + id);		// PRINTLOG
+	}
+
+	public void printNeighbors () {
+		String tCoordinates;
+		OffsetCoord tOffsetCoord;
+		
+		if (offsetCoordinates == null) {
+			tCoordinates = "NONE SET";
+		} else {
+			tCoordinates = offsetCoordinates.getCoordinates ();
+		}
+		System.out.println ("Cell " + id + " " + tCoordinates + " Neighbors: ");
+		for (int tIndex = 0; tIndex < countOfSides; tIndex++) {
+			tOffsetCoord = neighbors [tIndex].getOffsetCoordinates ();
+			if (tOffsetCoord == null) {
+				tCoordinates = "NONE SET";
+			} else {
+				tCoordinates = tOffsetCoord.getCoordinates ();
+			}
+			System.out.println (tIndex + ": " + neighbors [tIndex].getID () + " " + tCoordinates);
+		}
 	}
 }
