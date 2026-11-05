@@ -4,6 +4,7 @@ import org.mockito.Mockito;
 
 import geUtilities.xml.XMLDocument;
 import geUtilities.xml.XMLElement;
+import geUtilities.xml.XMLFrame;
 import geUtilities.xml.XMLNode;
 
 public class UtilitiesTestFactory {
@@ -77,5 +78,13 @@ public class UtilitiesTestFactory {
 		mXMLElement = Mockito.mock (XMLElement.class);
 
 		return mXMLElement;
+	}
+
+	public XMLFrame buildXMLFrameMock () {
+		XMLFrame mXMLFrame;
+
+		mXMLFrame = Mockito.mock (XMLFrame.class);
+
+		return mXMLFrame;
 	}
 }
