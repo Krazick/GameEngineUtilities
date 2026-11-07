@@ -33,6 +33,15 @@ public class ChecksumCalc {
 		return tTrimmedMessage;
 	}
 	
+	public String stripTimeStampsFromXML (String aMessage) {
+		// actionEndTime="2026-11-07T09:00:04.366336" actionStartTime="2026-11-07T09:00:04.366336"
+		String tTrimmedMessage;
+		
+		tTrimmedMessage = aMessage.replaceAll (" actionEndTime=\"[0-9\\-:.T]*\" *actionStartTime=\"[0-9\\-:.T]*\"", "");
+		
+		return tTrimmedMessage;
+	}
+	
 	public String MD5 (XMLDocument aXMLDocument) {
 		return MD5 (aXMLDocument.toXMLString (), STRIP_WHITESPACE);
 	}
@@ -49,7 +58,8 @@ public class ChecksumCalc {
 		
 		try {
 			if (aStripWhitespace) {
-				tTrimmedMessage = stripWhitespaceFromXML (aMessage);
+				tTrimmedMessage = stripTimeStampsFromXML (aMessage);
+				tTrimmedMessage = stripWhitespaceFromXML (tTrimmedMessage);
 			} else {
 				tTrimmedMessage = aMessage;
 			}

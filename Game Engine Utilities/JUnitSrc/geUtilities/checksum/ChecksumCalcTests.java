@@ -18,6 +18,24 @@ class ChecksumCalcTests {
 	}
 
 	@Test
+	@DisplayName ("Test Timestamp Stripping")
+	void timestampStripTests () {
+		String tResult;
+		String tTimestampSample = "<Player actionEndTime=\"2026-11-07T09:00:04.366336\" " +
+			" actionStartTime=\"2026-11-07T09:00:14.019062\" addTimeBudget=\"true\" auctionState=\"No Action\" " +
+			" bidShare=\"false\" boughtShare=\"\" cash=\"1200\" certificateLimit=\"28\" dividendCount=\"0\" " +
+			" dividends=\"\" exchangePrezShare=\"\" name=\"David\" playerIndex=\"0\" primaryState=\"No Action\" " +
+			" soldCompanies=\"\" startTimedEvents=\"true\" timeBudget=\"PT0S\" totalTimeUsed=\"PT0S\" triggeredAuction=\"false\">\n";
+		String tTimestampResult = "<Player addTimeBudget=\"true\" auctionState=\"No Action\" " +
+				" bidShare=\"false\" boughtShare=\"\" cash=\"1200\" certificateLimit=\"28\" dividendCount=\"0\" " +
+				" dividends=\"\" exchangePrezShare=\"\" name=\"David\" playerIndex=\"0\" primaryState=\"No Action\" " +
+				" soldCompanies=\"\" startTimedEvents=\"true\" timeBudget=\"PT0S\" totalTimeUsed=\"PT0S\" triggeredAuction=\"false\">\n";
+
+		tResult = checksumCalc.stripTimeStampsFromXML (tTimestampSample);
+		assertEquals (tResult, tTimestampResult);
+	}
+	
+	@Test
 	@DisplayName ("Checksum Tests")
 	void checksumTests () {
 		String tMessage;
