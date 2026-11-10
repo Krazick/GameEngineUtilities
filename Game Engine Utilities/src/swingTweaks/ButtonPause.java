@@ -1,4 +1,4 @@
-package geUtilities;
+package swingTweaks;
 
 import java.awt.Dialog;
 import java.awt.FlowLayout;
@@ -6,28 +6,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import geUtilities.xml.XMLFrame;
-import swingTweaks.KButton;
 
-public class ButtonPause {	
+public class ButtonPause {
 	public ButtonPause (XMLFrame aFrame, String aActionInfo) {
         aFrame.toFront ();
         preparePause (aFrame, aActionInfo);
 	}
 	
-    public void preparePause (JFrame aFrame, String aActionInfo) {
+    public void preparePause (XMLFrame aFrame, String aActionInfo) {
     	JLabel tJLabel1;
     	JLabel tJLabel2;
         JDialog tJDialog;
         KButton tCloseButton;
         
-        tJDialog = new JDialog (aFrame, "PAUSE", true);
-        
-        tJDialog.setSize (270, 100);
+//        tJDialog = new JDialog (aFrame, "PAUSE", true);
+        tJDialog = new JDialog ();
+        tJDialog.setSize (400, 400);
         tJDialog.setLayout (new FlowLayout ());
+        tJDialog.setLocationRelativeTo (aFrame);
         tJLabel1 = new JLabel (aActionInfo);
         tJLabel2 = new JLabel ("Hit Continue when ready");
         tCloseButton = new KButton ("Continue");
