@@ -1,5 +1,6 @@
 package swingTweaks;
 
+import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -26,6 +27,7 @@ public class ButtonPause {
         tJDialog = new JDialog ();
         tJDialog.setSize (400, 400);
         tJDialog.setLayout (new FlowLayout ());
+        tJDialog.setBackground (Color.PINK);
         tJDialog.setLocationRelativeTo (aFrame);
         tJLabel1 = new JLabel (aActionInfo);
         tJLabel2 = new JLabel ("Hit Continue when ready");
@@ -42,6 +44,7 @@ public class ButtonPause {
         tJDialog.add (tJLabel1);
         tJDialog.add (tJLabel2);
         tJDialog.add (tCloseButton);
+        tJDialog.toFront ();
         tJDialog.setVisible (true);
         tJDialog.setModalityType (Dialog.ModalityType.APPLICATION_MODAL);
     }
