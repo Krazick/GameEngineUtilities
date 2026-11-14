@@ -93,10 +93,24 @@ public class XMLFrame extends JFrame {
 		return gameName;
 	}
 
+	/**
+	 * 	The buildScrollPane method takes an JComponent and calls the two arg buildScrollPane method
+	 * 
+	 * @param aImage a JComponent that will be added to the ScrollPane
+	 * 
+	 */
 	public void buildScrollPane (JComponent aImage) {
 		buildScrollPane (aImage, GUI.NULL_STRING);
 	}
 
+	/** 
+	 * The buildScrollPane method to add the JComponent to the ScrollPanel
+	 * It will then add the ScrollPanel with the BorderLayout
+	 * 
+	 * @param aImage a JComponent that will be added to the ScrollPane
+	 * @param aBorderLayout If not NULL, will specify what Border Layout should be
+	 * 
+	 */
 	public void buildScrollPane (JComponent aImage, String aBorderLayout) {
 		scrollPane = new JScrollPane ();
 		scrollPane.setViewportView (aImage);
