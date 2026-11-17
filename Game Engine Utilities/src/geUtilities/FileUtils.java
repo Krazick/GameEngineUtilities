@@ -27,12 +27,15 @@ public class FileUtils {
 	 * Get the extension of a file.
 	 */
 	public String getExtension (File aFile) {
-		String tExtension = GUI.NULL_STRING;
-		String s = aFile.getName ();
-		int i = s.lastIndexOf ('.' + GE_extension);
+		String tExtension;
+		String tFileName;
+		int tIndex;
 
-		if ((i > 0) && (i < s.length () - 1)) {
-			tExtension = s.substring (i + 1).toLowerCase ();
+		tExtension = GUI.NULL_STRING;
+		tFileName = aFile.getName ();
+		tIndex = tFileName.lastIndexOf ('.' + GE_extension);
+		if ((tIndex > 0) && (tIndex < tFileName.length () - 1)) {
+			tExtension = tFileName.substring (tIndex + 1).toLowerCase ();
 		}
 
 		return tExtension;
