@@ -9,7 +9,6 @@ import java.nio.file.StandardCopyOption;
 public class SnapCopyFile {
 
 	public SnapCopyFile (File aSourceFile, File aTargetDirectory, int aActionNumber) {
-		String tSourceDirName;
 		String tSourceFileName;
 		String tTargetDirName;
 		String tTargetFileName;
@@ -19,29 +18,35 @@ public class SnapCopyFile {
 		Path tDestinationPath;
 		
         try {
-        	tSourceDirName =  aSourceFile.getParent ();
-        	tSourceFileName = aSourceFile.getName ();
-        	
-        	tTargetDirName = aTargetDirectory.getPath ();
-        	tActionNumber = "." + aActionNumber;
-        	tTargetFileName = tSourceFileName.replace (".save18xx.xml", 
-        						tActionNumber + ".save18xx.xml");
-        	System.out.println ("Source Dir [" + tSourceDirName + "]");
-        	System.out.println ("Source File [" + tSourceFileName + "]");
-        	System.out.println ("Destination Dir [" + tTargetDirName + "]");
-           	System.out.println ("Destination File [" + tTargetFileName + "]");
-           	tDestinationFile = new File (tTargetDirName + "/" + tTargetFileName);
-        	
-           	tSourcePath = aSourceFile.toPath ();
-           	tDestinationPath = tDestinationFile.toPath ();
-           	Files.copy (tSourcePath, tDestinationPath, StandardCopyOption.REPLACE_EXISTING);
-           	            
-            System.out.println("File copied successfully!");
-            
-        } catch (IOException e) {
+        	if (exists (aSourceFile)) {
+	        	tSourceFileName = aSourceFile.getName ();
+	        	if (exists (aTargetDirectory)) {
+		        	tTargetDirName = aTargetDirectory.getPath ();
+		        	tActionNumber = "." + aActionNumber;
+		        	tTargetFileName = tSourceFileName.replace (".save18xx.xml", 
+		        						tActionNumber + ".save18xx.xml");
+		           	tDestinationFile = new File (tTargetDirName + "/" + tTargetFileName);
+		        	
+		           	tSourcePath = aSourceFile.toPath ();
+		           	tDestinationPath = tDestinationFile.toPath ();
+		           	Files.copy (tSourcePath, tDestinationPath, StandardCopyOption.REPLACE_EXISTING);
+	        	}
+        	}
+         } catch (IOException e) {
             e.printStackTrace();
         }
-
 	}
-
+	
+	public boolean exists (File aFile) {
+		boolean tExists;
+		
+		tExists = true;
+		if (aFile == null) {
+			tExists = false;
+		} else {
+			tExists = aFile.exists ();
+		}
+		
+		return tExists;
+	}
 }
