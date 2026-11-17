@@ -15,11 +15,13 @@ public class FileGEFilter extends FileFilter {
 
 	@Override
 	public boolean accept (File aFile) {
+		String tExtension;
+		
 		if (aFile.isDirectory ()) {
 			return true;
 		}
 
-		String tExtension = fileUtils.getExtension (aFile);
+		tExtension = fileUtils.getExtension (aFile);
 		if (tExtension != GUI.NULL_STRING) {
 			if (tExtension.equals (fileUtils.xml)) {
 				return true;
