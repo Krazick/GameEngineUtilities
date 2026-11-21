@@ -36,6 +36,37 @@ class ChecksumCalcTests {
 	}
 	
 	@Test
+	@DisplayName ("Strip WhiteSpace tests")
+	void stripWhitespaceTests () {
+		String tResultMac;
+		String tResultWindows;
+		String tXMLWhiteSpaceTextMac = "    <Players>\n"
+				+ "        <Player name=\"richard\" playerIndex=\"0\"/>\n"
+				+ "        <ChecksumXMLElement label=\"richard\" nodeName=\"Player\"/>\n"
+				+ "        <Player name=\"David\" playerIndex=\"1\"/>\n"
+				+ "        <ChecksumXMLElement label=\"David\" nodeName=\"Player\"/>\n"
+				+ "        <Player name=\"jeff\" playerIndex=\"2\"/>\n"
+				+ "        <ChecksumXMLElement label=\"jeff\" nodeName=\"Player\"/>\n"
+				+ "        <Player name=\"Mark\" playerIndex=\"3\"/>\n"
+				+ "        <ChecksumXMLElement label=\"Mark\" nodeName=\"Player\"/>\n"
+				+ "    </Players>\n";
+		String tXMLWhiteSpaceTextWindows = "<Players>\r\n"
+				+ "<Player name=\"richard\" playerIndex=\"0\"/>\r\n"
+				+ "<ChecksumXMLElement label=\"richard\" nodeName=\"Player\"/>\r\n"
+				+ "<Player name=\"David\" playerIndex=\"1\"/>\r\n"
+				+ "<ChecksumXMLElement label=\"David\" nodeName=\"Player\"/>\r\n"
+				+ "<Player name=\"jeff\" playerIndex=\"2\"/>\r\n"
+				+ "<ChecksumXMLElement label=\"jeff\" nodeName=\"Player\"/>\r\n"
+				+ "<Player name=\"Mark\" playerIndex=\"3\"/>\r\n"
+				+ "<ChecksumXMLElement label=\"Mark\" nodeName=\"Player\"/>\r\n"
+				+ "</Players>\r\n";
+		
+		tResultMac = checksumCalc.stripWhitespaceFromXML (tXMLWhiteSpaceTextMac);
+		tResultWindows = checksumCalc.stripWhitespaceFromXML (tXMLWhiteSpaceTextWindows);
+		assertEquals (tResultMac, tResultWindows);
+	}
+	
+	@Test
 	@DisplayName ("Checksum Tests")
 	void checksumTests () {
 		String tMessage;
@@ -104,7 +135,7 @@ class ChecksumCalcTests {
 				+ "<VariantEffect action=\"Set Diesel Train Quantity to 6 (Standard)\" class=\"ge18xx.game.variants.SetTrainCountVEffect\" defaultEffect=\"true\" hide=\"false\" id=\"202\" name=\"Standard\" quantity=\"6\" state=\"false\" trainName=\"Diesel\"/>\r\n"
 				+ "</VariantEffects>\r\n" + "</GameInfo>\r\n\n";
 		tChecksum = checksumCalc.MD5 (tGameInfoWindowsXML, ChecksumCalc.STRIP_WHITESPACE);
-		assertEquals ("2de6c1db22bacf3e22dc655cf74d7303", tChecksum);
+		assertEquals ("24c362e090ec6b69750f76361741b100", tChecksum);
 //		assertEquals ("aa94f4340567d5261e09572242b7ff7fca2999e7f8de94cee7b95701a9ed0bbb", tChecksum);
 	}
 }
